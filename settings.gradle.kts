@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Traffic Safety Education"
 include(":app")
- 
+include(":core")
