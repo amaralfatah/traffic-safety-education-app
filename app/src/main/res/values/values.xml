@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    Video Pertama-->
+    <integer-array name="images_st">
+        <item>@drawable/helmet</item>
+        <item>@drawable/scooter</item>
+        <item>@drawable/ride</item>
+        <item>@drawable/traffic_light</item>
+    </integer-array>
+    <string-array name="sub_titles_st">
+        <item>Cek Kelengkapanmu</item>
+        <item>Persiapkan Motormu</item>
+        <item>Nikmati Perjalananmu</item>
+        <item>Berkendara dengan Aman</item>
+    </string-array>
+    <string-array name="descriptions_st">
+        <item>@string/desc_1_st</item>
+        <item>@string/desc_2_st</item>
+        <item>@string/desc_3_st</item>
+        <item>@string/desc_4_st</item>
+    </string-array>
+    <string name="desc_1_st">Biar motoran makin keren dan aman! Pakai Helm SNI, masker, jaket, sarung tangan, celana &amp; sepatu kece yang bukan cuma buat gaya, tapi juga jaga keselamatan.</string>
+    <string name="desc_2_st">Pastikan motormu siap dengan cek bahan bakar, oli, ban, rem, &amp; lampu sebelum petualangan dimulai.</string>
+    <string name="desc_3_st">Buat langkah aman di jalan, penting banget deh ngecek spion, nyala-in sein, pantengin spion saat manuver, &amp; jaga jarak sama kendaraan lain.</string>
+    <string name="desc_4_st">Selalu prioritaskan keselamatan dengan cek spion sebelum belok, turun kecepatan saat berhenti, &amp; tetap waspada sebelum melanjutkan perjalanan.</string>
+
+<!--    Video Kedua-->
+    <integer-array name="images_nd">
+        <item>@drawable/motorcycle</item>
+        <item>@drawable/driving_license</item>
+        <item>@drawable/stop_sign</item>
+        <item>@drawable/students</item>
+        <item>@drawable/road_attitude</item>
+    </integer-array>
+    <string-array name="sub_titles_nd">
+        <item>Kepatuhan di Jalan Raya</item>
+        <item>Dokumen Legal</item>
+        <item>Rambu &amp; Marka Jalan</item>
+        <item>Keselamatan di Zona Khusus</item>
+        <item>Etika Berkendara</item>
+    </string-array>
+
+    <string-array name="descriptions_nd">
+        <item>@string/desc_1_nd</item>
+        <item>@string/desc_2_nd</item>
+        <item>@string/desc_3_nd</item>
+        <item>@string/desc_4_nd</item>
+        <item>@string/desc_5_nd</item>
+    </string-array>
+    <string name="desc_1_nd">Ikut aturan bukan cuma sampai, tapi juga buat semua aman. Fokus jaga keamanan di jalan, biar riding seru dan aman!</string>
+    <string name="desc_2_nd">Bawa SIM dan STNK bikin kita siap dan bertanggung jawab. Ini bukan cuma izin, tapi bikin jalan lebih aman!</string>
+    <string name="desc_3_nd">Paham rambu jalan bikin kita lebih cerdas nyetir. Handle jalanan dengan kece!</string>
+    <string name="desc_4_nd">Waspada lewatin Yellow Box Junction atau Zebra Cross, saling hormat, buat jalan lebih safe!</string>
+    <string name="desc_5_nd">Meski asik, safety nomor satu! Bikin jalan lebih tertib, kita punya peran penting buat budaya berkendara yang aman!</string>
+</resources>

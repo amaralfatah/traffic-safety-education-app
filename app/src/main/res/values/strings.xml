@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Traffic Safety Education</string>
+    <string name="question_number_prefix">Question %1$d.</string>
+    <string name="default_question">This is a sample question?</string>
+    <string name="video_title">Materi 1 : Safety Riding</string>
+    <string name="sudah_menonton">Saya sudah menonton</string>
+
+
+    <!--    video materi-->
+    <string name="materi_1">Materi 1</string>
+    <string name="judul_1">Safety Riding</string>
+    <string name="pengantar_materi_1">Sebelum kita berkendara, ada beberapa hal penting yang harus disiapkan untuk melakukan safety riding.</string>
+    <string name="kesimpulan_materi_1">Ingat, keamanan dalam berkendara adalah tanggung jawab bersama. Tetap berhati-hati, patuhi aturan lalu lintas, dan jaga keselamatan diri serta pengguna jalan lainnya 🛵🌟</string>
+
+    <string name="materi_2">Materi 2</string>
+    <string name="judul_2">Aturan Berlalu Lintas dan Marka Jalan yang Benar</string>
+    <string name="pengantar_materi_2">Sebelum kita melaju di jalan, ada hal-hal penting yang harus dipersiapkan untuk memastikan keselamatan saat berkendara.</string>
+    <string name="kesimpulan_materi_2">Ingat, keamanan saat berkendara merupakan tanggung jawab bersama. Selalu waspada, patuhi aturan lalu lintas, dan jaga keselamatan diri serta semua pengguna jalan lainnya 🛵🌟</string>
 </resources>
