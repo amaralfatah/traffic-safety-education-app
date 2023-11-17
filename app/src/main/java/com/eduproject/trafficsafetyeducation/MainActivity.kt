@@ -1,10 +1,12 @@
 package com.eduproject.trafficsafetyeducation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
 import com.eduproject.trafficsafetyeducation.databinding.ActivityMainBinding
+import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
 import com.eduproject.trafficsafetyeducation.pretest.PretestViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -49,6 +51,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        }
+        binding.btnMateri.setOnClickListener {
+            val intent = Intent(this, FirstVideoActivity::class.java)
+            startActivity(intent)
         }
 
 
