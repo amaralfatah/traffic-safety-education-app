@@ -19,10 +19,10 @@ interface MainDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPostestQuestion(data: List<Postest>)
     @Transaction
-    @Query("SELECT * FROM pretest")
+    @Query("SELECT * FROM pretest ORDER BY RANDOM()")
     fun getPretest(): Flow<List<DataEntity>>
 
     @Transaction
-    @Query("SELECT * FROM postest")
+    @Query("SELECT * FROM postest ORDER BY RANDOM()")
     fun getPostest(): Flow<List<Postest>>
 }
