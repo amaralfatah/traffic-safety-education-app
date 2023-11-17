@@ -5,7 +5,7 @@ plugins {
 apply(from = "../shared_dependencies.gradle")
 android {
     namespace = "com.eduproject.trafficsafetyeducation"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.eduproject.trafficsafetyeducation"
@@ -16,6 +16,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures {
+        viewBinding  = true
+    }
+
 
     buildTypes {
         release {

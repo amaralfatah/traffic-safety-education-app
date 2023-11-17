@@ -1,12 +1,14 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
+    id ("kotlin-parcelize")
 }
 
 apply(from = "../shared_dependencies.gradle")
 android {
     namespace = "com.eduproject.trafficsafetyeducation.core"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -34,6 +36,22 @@ android {
 }
 
 dependencies {
+
+    //room
+    implementation ("androidx.room:room-ktx:2.6.0")
+    kapt( "androidx.room:room-compiler:2.6.0")
+    implementation ("androidx.room:room-runtime:2.6.0")
+
+
+    //coroutine
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation ("androidx.room:room-ktx:2.5.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+
+    //gson
+    implementation ("com.google.code.gson:gson:2.10.1")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
