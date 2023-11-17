@@ -7,12 +7,17 @@ import com.eduproject.trafficsafetyeducation.databinding.MultipleChoiceItemBindi
 
 class MultipleChoiceAdapter(
     private var list: List<String>,
+    private val onItemClick: (String) ->Unit
 ): RecyclerView.Adapter<MultipleChoiceViewHolder>() {
+
+    // Variable to keep track of the selected position
+    var selectedPosition = -1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MultipleChoiceViewHolder {
        return MultipleChoiceViewHolder(
            MultipleChoiceItemBinding.inflate(
                LayoutInflater.from(parent.context), parent, false
            ),
+           onItemClick
        )
     }
 
@@ -20,11 +25,24 @@ class MultipleChoiceAdapter(
 
     override fun onBindViewHolder(holder: MultipleChoiceViewHolder, position: Int) {
         val data = list[position]
-        holder.bind(data)
+        holder.bind(data,this)
+
+//        // Change the background color of the selected item
+//        if (selectedPosition == position)
+//            holder.itemView.setBackgroundColor(Color.parseColor("#DC746C")) // Selected color
+//        else
+//            holder.itemView.setBackgroundColor(Color.parseColor("#E49B83")) // Default color
+
+
     }
     fun updateData(newList: List<String>) {
         list = newList
         notifyDataSetChanged()
     }
 
+    // Method to update the selected position
+    fun updateSelectedPosition(position: Int) {
+        selectedPosition = position
+        notifyDataSetChanged()
+    }
 }
