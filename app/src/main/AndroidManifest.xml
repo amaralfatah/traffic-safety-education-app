@@ -16,11 +16,14 @@
         android:theme="@style/Theme.TrafficSafetyEducation"
         tools:targetApi="31">
         <activity
+            android:name=".splash.OnBoardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".materi.FirstVideoActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".materi.SecondVideoActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

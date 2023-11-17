@@ -8,6 +8,7 @@ import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
 import com.eduproject.trafficsafetyeducation.databinding.ActivityMainBinding
 import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
 import com.eduproject.trafficsafetyeducation.pretest.PretestViewModel
+import com.eduproject.trafficsafetyeducation.splash.OnBoardingActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -54,6 +55,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnMateri.setOnClickListener {
             val intent = Intent(this, FirstVideoActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnSplash.setOnClickListener {
+            val intent = Intent(this, OnBoardingActivity::class.java)
             startActivity(intent)
         }
 
