@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import androidx.core.view.ViewCompat
-import androidx.core.view.get
 import androidx.core.view.isVisible
 import com.eduproject.trafficsafetyeducation.R
 
