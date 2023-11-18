@@ -1,10 +1,14 @@
+// OnBoardingActivity.kt
 package com.eduproject.trafficsafetyeducation.splash
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
+import com.eduproject.trafficsafetyeducation.MainActivity
 import com.eduproject.trafficsafetyeducation.R
 import me.relex.circleindicator.CircleIndicator3
 
@@ -13,6 +17,7 @@ class OnBoardingActivity : AppCompatActivity() {
     private var titlesList = mutableListOf<String>()
     private var descList = mutableListOf<String>()
     private var lottieFilesList = mutableListOf<String>()
+    private lateinit var btnStart : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +27,32 @@ class OnBoardingActivity : AppCompatActivity() {
 
         postToList()
 
-        // Menginisialisasi ViewPager2
         val viewPager2 = findViewById<ViewPager2>(R.id.view_pager2)
-        viewPager2.adapter = ViewPagerAdapter(titlesList,descList,lottieFilesList)
+        viewPager2.adapter = ViewPagerAdapter(titlesList, descList, lottieFilesList)
         viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
         val indicator = findViewById<CircleIndicator3>(R.id.indicator)
         indicator.setViewPager(viewPager2)
+
+        btnStart = findViewById<Button>(R.id.btnStart)
+        btnStart.visibility = View.GONE
+        btnStart.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            finish()
+        }
+
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position == 2) { // 0-indexed
+                    btnStart.visibility = View.VISIBLE
+                } else {
+                    btnStart.visibility = View.GONE
+                }
+            }
+        })
 
     }
 
@@ -40,13 +65,12 @@ class OnBoardingActivity : AppCompatActivity() {
     private fun postToList() {
         for (i in 1..3) {
             if (i == 1) {
-                addToList("Selamat Datang \ndi Traffic Safety Education!", "Tempat di mana keamanan di jalan raya jadi asyik. Bersiaplah untuk memulai petualangan belajar yang penuh keseruan dan pengetahuan!", "on_boarding_$i")
+                addToList("Selamat Datang \ndi Traffic Safety Education!", "Mari menjadikan keselamatan berkendara lebih menyenangkan dan siap untuk petualangan belajar yang seru dan informatif!\"", "on_boarding_$i")
             } else if (i == 2) {
-                addToList("Lengkapin Pengetahuan Kamu!", "Yuk, mulai dengan tes awal yang seru, pelajari materi-materi menarik, dan ujilah kemampuanmu dalam postest!", "on_boarding_$i")
+                addToList("Tingkatkan Pengetahuanmu!", " Ikuti tes seru, pelajari materi menarik, dan uji kemampuanmu dalam postest!", "on_boarding_$i")
             } else if (i == 3) {
-                addToList("ARE YOU READY!?", "Langsung masuk dan jelajahi segala fitur seru yang ada di Traffic Safety Education. Yuk, mulai perjalananmu menuju keselamatan berkendara yang keren dan aman!", "on_boarding_$i")
+                addToList("Sudah Siap!?", "Ayo, mulai perjalananmu menuju keselamatan berkendara yang keren dan aman!", "on_boarding_$i")
             }
-
         }
     }
 }
