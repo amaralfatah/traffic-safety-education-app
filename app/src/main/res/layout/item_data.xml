@@ -15,11 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/imageView"
-            android:padding="10dp"
+            android:paddingTop="10dp"
+            android:paddingStart="10dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="12dp"
             android:layout_width="75sp"
             android:layout_height="75sp"
             android:src="@drawable/helmet"/>
@@ -34,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:text="@string/app_name"/>
 
@@ -44,10 +48,11 @@
                 android:layout_height="wrap_content"
                 android:justificationMode="inter_word"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
+                android:textSize="10sp"
                 android:text="@string/desc_1_st"/>
 
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
