@@ -22,7 +22,13 @@ data class DataEntity (
     var answer: List<String>,
 
     @ColumnInfo(name = "correctAnswer")
-    var correctAnswer: String
+    var correctAnswer: String,
+
+    @ColumnInfo(name = "isAnswered")
+    var isAnswered: Boolean = false,
+
+    @ColumnInfo(name = "isCorrect")
+    var isCorrect: Boolean = false
 
 ): Parcelable
 
@@ -41,6 +47,12 @@ data class Postest (
     var answer: List<String>,
 
     @ColumnInfo(name = "correctAnswer")
-    var correctAnswer: String
+    var correctAnswer: String,
+
+    @ColumnInfo(name = "isAnswered")
+    var isAnswered: Boolean = false,
+
+    @ColumnInfo(name = "isCorrect")
+    var isCorrect: Boolean = false
 
 ): Parcelable

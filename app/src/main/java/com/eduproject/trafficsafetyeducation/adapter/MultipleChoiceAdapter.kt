@@ -1,5 +1,6 @@
 package com.eduproject.trafficsafetyeducation.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -41,8 +42,12 @@ class MultipleChoiceAdapter(
     }
 
     // Method to update the selected position
-    fun updateSelectedPosition(position: Int) {
-        selectedPosition = position
-        notifyDataSetChanged()
+    fun updateSelectedPosition(newPosition: Int) {
+        Log.d("MultipleChoiceAdapter", "Updating selected position: $newPosition")
+        val oldPosition = selectedPosition
+        selectedPosition = newPosition
+        notifyItemChanged(oldPosition)
+        notifyItemChanged(newPosition)
     }
+
 }

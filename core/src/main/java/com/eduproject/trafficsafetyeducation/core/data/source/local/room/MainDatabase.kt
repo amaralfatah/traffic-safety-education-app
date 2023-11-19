@@ -8,7 +8,7 @@ import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.Poste
 import com.eduproject.trafficsafetyeducation.core.utils.Converters
 
 
-@Database(entities = [DataEntity::class, Postest::class], version = 1, exportSchema = false)
+@Database(entities = [DataEntity::class, Postest::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MainDatabase: RoomDatabase() {
     abstract fun mainDao(): MainDao

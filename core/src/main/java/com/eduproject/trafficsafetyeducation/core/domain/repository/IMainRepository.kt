@@ -5,6 +5,7 @@ import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.Poste
 import kotlinx.coroutines.flow.Flow
 interface IMainRepository {
 
+    suspend fun populateDatabaseIfEmpty()
     fun getPretest(): Flow<List<DataEntity>>
 
     fun getPostest(): Flow<List<Postest>>
