@@ -1,5 +1,6 @@
 package com.eduproject.trafficsafetyeducation
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
 import com.eduproject.trafficsafetyeducation.databinding.ActivityMainBinding
+import com.eduproject.trafficsafetyeducation.databinding.CustomViewLayoutBinding
 import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
 import com.eduproject.trafficsafetyeducation.pretest.PretestViewModel
 import com.eduproject.trafficsafetyeducation.splash.OnBoardingActivity
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
     private val pretestViewModel: PretestViewModel by viewModel()
     private lateinit var binding: ActivityMainBinding
+    private lateinit var customView: CustomViewLayoutBinding
+    private var correctAnswerCount: Int = 0
 
 
     //
@@ -28,14 +32,12 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvMultipleChoice.layoutManager = layoutManager
 
-        Log.d("Main Acticity", "Main Activity")
-
         pretestViewModel.pretest()
         pretestViewModel.postest()
 
         var currentIndex = 0
         var correctAnswer: String
-        var correctAnswerCount = 0
+//        var correctAnswerCount = 0
         var isAnswered: Boolean
         var isCorrect: Boolean
         val userAnswers = mutableMapOf<Int, String>()
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             isCorrect = answeredCorrectly[currentIndex] ?: false
             answeredCorrectly[currentIndex] = false
 
-            val multipleChoiseAdapter = MultipleChoiceAdapter(firstItem.answer) { clickAnswer ->
+            val multipleChoiseAdapter = MultipleChoiceAdapter(firstItem.answer, currentIndex, this) { clickAnswer ->
                 userAnswers[currentIndex] = clickAnswer
                 binding.clickedAnswer.text = clickAnswer
                 Log.d("CorrectAnswer", firstItem.correctAnswer)
@@ -86,12 +88,6 @@ class MainActivity : AppCompatActivity() {
             // kondisi 3 : Jawaban benar->salah user sudah pernah menjawab count--
             //kondisi 4:  jawaban salah->benar user udah pernah manjawab count++
 
-
-            //Kondisi 1 : Jawaban benar user sudah belum pernah menjawab (skor naik)
-            //kondisi 2 : Jawaban salah user belum pernah menjawab (yaudah gak ada apa2)
-            // kondisi 3 : user click  prev button dan ganti Jawaban benar->salah (skor turun)
-            //kondisi 4:  user click prev button dan ganti jawaban salah->benar (skor naik)
-
             binding.nextButton.setOnClickListener {
                 if (currentIndex < data.size - 1) {
                     currentIndex++
@@ -101,8 +97,11 @@ class MainActivity : AppCompatActivity() {
                     correctAnswer = nextItem.correctAnswer
                     isAnswered = userAnswers.containsKey(currentIndex)
                     isCorrect = answeredCorrectly[currentIndex] ?: false
-                    multipleChoiseAdapter.updateData(nextItem.answer)
+                    multipleChoiseAdapter.updateData(nextItem.answer, currentIndex)
                 }
+                Log.d("isAnsweredLog", isAnswered.toString())
+                //sampai soal terakhir dan sudah menjawab
+
             }
 
             binding.prevButton.setOnClickListener {
@@ -114,11 +113,11 @@ class MainActivity : AppCompatActivity() {
                     correctAnswer = currentItem.correctAnswer
                     isAnswered = userAnswers.containsKey(currentIndex)
                     isCorrect = answeredCorrectly[currentIndex] ?: false
-                    multipleChoiseAdapter.updateData(currentItem.answer)
+                    multipleChoiseAdapter.updateData(currentItem.answer, currentIndex)
 
                 }
             }
-
+//            Log.d("CurrentIndex", currentIndex.toString())
             binding.rvMultipleChoice.adapter = multipleChoiseAdapter
 
         }
@@ -134,4 +133,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun customDialog() {
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            .create()
+        customView = CustomViewLayoutBinding.inflate(layoutInflater)
+        builder.setView(customView.root)
+
+        customView.score.text = correctAnswerCount.toString()
+        customView.dialogDismissButton.setOnClickListener {
+            builder.dismiss()
+        }
+
+
+
+        builder.setCanceledOnTouchOutside(false)
+        builder.show()
+    }
 }

@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
 class LocalDataSource(private val mainDao: MainDao) {
-
     suspend fun populateDatabaseIfEmpty() {
         val pretestList = mainDao.getPretest().first()
         if (pretestList.isEmpty()) {

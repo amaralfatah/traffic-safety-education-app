@@ -1,5 +1,6 @@
 package com.eduproject.trafficsafetyeducation.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +9,9 @@ import com.eduproject.trafficsafetyeducation.databinding.MultipleChoiceItemBindi
 
 class MultipleChoiceAdapter(
     private var list: List<String>,
-    private val onItemClick: (String) ->Unit
+    private var index: Int,
+    private val context: Context,
+    private val onItemClick: (String) ->Unit,
 ): RecyclerView.Adapter<MultipleChoiceViewHolder>() {
 
     // Variable to keep track of the selected position
@@ -18,6 +21,8 @@ class MultipleChoiceAdapter(
            MultipleChoiceItemBinding.inflate(
                LayoutInflater.from(parent.context), parent, false
            ),
+           context
+           ,
            onItemClick
        )
     }
@@ -26,7 +31,7 @@ class MultipleChoiceAdapter(
 
     override fun onBindViewHolder(holder: MultipleChoiceViewHolder, position: Int) {
         val data = list[position]
-        holder.bind(data,this)
+        holder.bind(data,this,index)
 
 //        // Change the background color of the selected item
 //        if (selectedPosition == position)
@@ -36,8 +41,9 @@ class MultipleChoiceAdapter(
 
 
     }
-    fun updateData(newList: List<String>) {
+    fun updateData(newList: List<String>, newindex:Int) {
         list = newList
+        index = newindex
         notifyDataSetChanged()
     }
 
