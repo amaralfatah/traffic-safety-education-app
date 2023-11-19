@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
             //Kondisi 1 : Jawaban benar user sudah belum pernah menjawab count++
             //kondisi 2 :Jawaban salah user belum pernah menjawab
-            // kondisi 3 : Jawaban benar->salah user sudah pernah menjawab count--
+            //kondisi 3 : Jawaban benar->salah user sudah pernah menjawab count--
             //kondisi 4:  jawaban salah->benar user udah pernah manjawab count++
 
             binding.nextButton.setOnClickListener {
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                     isCorrect = answeredCorrectly[currentIndex] ?: false
                     multipleChoiseAdapter.updateData(nextItem.answer, currentIndex)
                 }
-                Log.d("isAnsweredLog", isAnswered.toString())
+               multipleChoiseAdapter.updateSelectedPosition(-1)
                 //sampai soal terakhir dan sudah menjawab
 
             }

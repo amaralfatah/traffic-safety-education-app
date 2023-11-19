@@ -33,12 +33,12 @@ class MultipleChoiceAdapter(
         val data = list[position]
         holder.bind(data,this,index)
 
-//        // Change the background color of the selected item
+//        Change the background color of the selected item
 //        if (selectedPosition == position)
 //            holder.itemView.setBackgroundColor(Color.parseColor("#DC746C")) // Selected color
 //        else
 //            holder.itemView.setBackgroundColor(Color.parseColor("#E49B83")) // Default color
-
+        // Reset the background color
 
     }
     fun updateData(newList: List<String>, newindex:Int) {
