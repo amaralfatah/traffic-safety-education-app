@@ -28,37 +28,37 @@ object InitialDataSource {
             DataEntity(
                 1,
                 "Pertanyaan 1 (jawaban A)",
-                listOf("pilih ini", "ini", "ini", "atau ini"),
+                listOf("pilih ini 1", "ini 1", "ini 1", "atau ini 1"),
                 "A"
             ),
             DataEntity(
                 2,
                 "Pertanyaan 2 (jawaban D)",
-                listOf("pilih ini", "ini", "ini", "atau ini"),
+                listOf("pilih ini 2", "ini 2", "ini 2", "atau ini 2"),
                 "D"
             ),
             DataEntity(
                 3,
                 "Pertanyaan 3 (jawaban B)",
-                listOf("pilih ini", "ini", "ini", "atau ini"),
+                listOf("pilih ini 3", "ini 3", "ini 3", "atau ini 3"),
                 "B"
             ),
             DataEntity(
                 4,
                 "Pertanyaan 4 (jawaban C)",
-                listOf("pilih ini", "ini", "ini", "atau ini"),
+                listOf("pilih ini 4", "ini 4", "ini 4" , "atau ini4"),
                 "C"
             ),
             DataEntity(
                 5,
                 "Pertanyaan 5 (jawaban A)",
-                listOf("pilih ini", "ini", "ini", "atau ini"),
+                listOf("pilih ini 5", "ini 5", "ini 5", "atau ini 5"),
                 "A"
             ),
             DataEntity(
                 6,
                 "Pertanyaan 6 (jawaban D)",
-                listOf("pilih ini", "ini", "ini", "atau ini"),
+                listOf("pilih ini 6", "ini 6", "ini 6", "atau ini 6"),
                 "D"
             )
         )
