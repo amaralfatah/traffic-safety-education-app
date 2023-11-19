@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
@@ -35,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         pretestViewModel.pretest()
         pretestViewModel.postest()
 
+        val test = "dishub_logo"
+
+
+
+        Log.d("Code", R.drawable.dishub_logo.toString())
+
         var currentIndex = 0
         var correctAnswer: String
 //        var correctAnswerCount = 0
@@ -53,6 +60,19 @@ class MainActivity : AppCompatActivity() {
             isAnswered = userAnswers.containsKey(currentIndex)
             isCorrect = answeredCorrectly[currentIndex] ?: false
             answeredCorrectly[currentIndex] = false
+
+
+            val resID = resources.getIdentifier(firstItem.images, "drawable", packageName)
+            if (resID != 0) {
+                binding.IVSoal.visibility = View.VISIBLE
+                binding.IVSoal.setImageResource(resID)
+            }else {
+                // Jika gambar tidak ditemukan, lakukan tindakan yang sesuai (misalnya, set gambar default)\
+                binding.IVSoal.visibility = View.GONE
+            }
+            if (resID != 0) {
+                binding.IVSoal.setImageResource(resID)
+            }
 
             val multipleChoiseAdapter = MultipleChoiceAdapter(firstItem.answer, currentIndex, this) { clickAnswer ->
                 userAnswers[currentIndex] = clickAnswer
@@ -97,6 +117,15 @@ class MainActivity : AppCompatActivity() {
                     correctAnswer = nextItem.correctAnswer
                     isAnswered = userAnswers.containsKey(currentIndex)
                     isCorrect = answeredCorrectly[currentIndex] ?: false
+                    val resID = resources.getIdentifier(nextItem.images, "drawable", packageName)
+
+                    if (resID != 0) {
+                        binding.IVSoal.visibility = View.VISIBLE
+                        binding.IVSoal.setImageResource(resID)
+                    }else {
+                        // Jika gambar tidak ditemukan, lakukan tindakan yang sesuai (misalnya, set gambar default)\
+                        binding.IVSoal.visibility = View.GONE
+                    }
                     multipleChoiseAdapter.updateData(nextItem.answer, currentIndex)
                 }
                multipleChoiseAdapter.updateSelectedPosition(-1)
@@ -113,6 +142,15 @@ class MainActivity : AppCompatActivity() {
                     correctAnswer = currentItem.correctAnswer
                     isAnswered = userAnswers.containsKey(currentIndex)
                     isCorrect = answeredCorrectly[currentIndex] ?: false
+                    val resID = resources.getIdentifier(currentItem.images, "drawable", packageName)
+
+                    if (resID != 0) {
+                        binding.IVSoal.visibility = View.VISIBLE
+                        binding.IVSoal.setImageResource(resID)
+                    }else {
+                        // Jika gambar tidak ditemukan, lakukan tindakan yang sesuai (misalnya, set gambar default)\
+                        binding.IVSoal.visibility = View.GONE
+                    }
                     multipleChoiseAdapter.updateData(currentItem.answer, currentIndex)
 
                 }

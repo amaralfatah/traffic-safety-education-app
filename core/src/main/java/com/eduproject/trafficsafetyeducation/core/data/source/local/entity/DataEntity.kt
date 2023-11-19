@@ -28,7 +28,10 @@ data class DataEntity (
     var isAnswered: Boolean = false,
 
     @ColumnInfo(name = "isCorrect")
-    var isCorrect: Boolean = false
+    var isCorrect: Boolean = false,
+
+    @ColumnInfo(name = "images")
+    var images: String  = ""
 
 ): Parcelable
 
@@ -53,6 +56,8 @@ data class Postest (
     var isAnswered: Boolean = false,
 
     @ColumnInfo(name = "isCorrect")
-    var isCorrect: Boolean = false
+    var isCorrect: Boolean = false,
 
+    @ColumnInfo(name = "images")
+    var images: String  = ""
 ): Parcelable

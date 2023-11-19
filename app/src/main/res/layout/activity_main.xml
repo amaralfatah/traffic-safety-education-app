@@ -15,6 +15,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/pertanyaan"/>
+
+    <ImageView
+        android:id="@+id/IV_soal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/soal_nomor"/>
+
+
     <TextView
         android:id="@+id/pertanyaan"
         android:layout_width="wrap_content"

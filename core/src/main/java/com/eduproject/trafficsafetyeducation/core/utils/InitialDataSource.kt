@@ -29,7 +29,8 @@ object InitialDataSource {
                 1,
                 "Pertanyaan 1 (jawaban A)",
                 listOf("pilih ini 1", "ini 1", "ini 1", "atau ini 1"),
-                "A"
+                "A",
+                images = "dishub_logo"
             ),
             DataEntity(
                 2,
