@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvMultipleChoice.layoutManager = layoutManager
 
+        Log.d("Main Acticity", "Main Activity")
 
         pretestViewModel.pretest()
         pretestViewModel.postest()
@@ -41,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         val answeredCorrectly = mutableMapOf<Int, Boolean>()
 
         pretestViewModel.pretest.observe(this) { data ->
+
+            Log.d("DATA", data.toString())
             val firstItem = data[currentIndex]
             binding.pertanyaan.text = firstItem.question
             binding.soalNomor.text = "${currentIndex + 1}"
@@ -83,6 +86,11 @@ class MainActivity : AppCompatActivity() {
             // kondisi 3 : Jawaban benar->salah user sudah pernah menjawab count--
             //kondisi 4:  jawaban salah->benar user udah pernah manjawab count++
 
+
+            //Kondisi 1 : Jawaban benar user sudah belum pernah menjawab (skor naik)
+            //kondisi 2 : Jawaban salah user belum pernah menjawab (yaudah gak ada apa2)
+            // kondisi 3 : user click  prev button dan ganti Jawaban benar->salah (skor turun)
+            //kondisi 4:  user click prev button dan ganti jawaban salah->benar (skor naik)
 
             binding.nextButton.setOnClickListener {
                 if (currentIndex < data.size - 1) {

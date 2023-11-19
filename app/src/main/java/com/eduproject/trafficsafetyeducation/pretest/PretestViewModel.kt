@@ -9,6 +9,7 @@ import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.Poste
 import com.eduproject.trafficsafetyeducation.core.domain.usecase.MainUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class PretestViewModel(private val mainUseCase: MainUseCase): ViewModel() {
 
@@ -18,11 +19,16 @@ class PretestViewModel(private val mainUseCase: MainUseCase): ViewModel() {
     private val _postest = MutableLiveData<List<Postest>>()
     val postest: LiveData<List<Postest>> = _postest
     fun pretest(){
-        mainUseCase.getQueston()
-            .onEach {
-                _pretest.value =it
-            }
-            .launchIn(viewModelScope)
+        viewModelScope.launch {
+            mainUseCase.populateDatabaseIfEmpty()
+            mainUseCase.getQueston()
+                .onEach {
+                    _pretest.value =it
+                }
+                .launchIn(viewModelScope)
+        }
+
+
     }
 
     fun postest(){

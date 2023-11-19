@@ -6,6 +6,8 @@ import com.eduproject.trafficsafetyeducation.core.domain.repository.IMainReposit
 import kotlinx.coroutines.flow.Flow
 
 class MainInteractor(private val mainRepository: IMainRepository): MainUseCase {
+    override suspend fun populateDatabaseIfEmpty() = mainRepository.populateDatabaseIfEmpty()
+
     override fun getQueston(): Flow<List<DataEntity>> = mainRepository.getPretest()
     override fun getPostest(): Flow<List<Postest>>  = mainRepository.getPostest()
 }

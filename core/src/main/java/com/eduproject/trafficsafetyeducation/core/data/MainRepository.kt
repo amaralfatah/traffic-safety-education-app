@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.Flow
 class MainRepository(
     private val localDatabase: LocalDataSource
 ):IMainRepository {
+    override suspend fun populateDatabaseIfEmpty() = localDatabase.populateDatabaseIfEmpty()
+
     override fun getPretest(): Flow<List<DataEntity>> = localDatabase.getPretestData()
     override fun getPostest(): Flow<List<Postest>>  = localDatabase.getPostestData()
 
