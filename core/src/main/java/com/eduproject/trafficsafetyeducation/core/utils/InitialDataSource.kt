@@ -5,21 +5,543 @@ import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.Poste
 
 object InitialDataSource {
 
+//    fun getQuestions(): List<DataEntity> {
+//        val listResultItem = ArrayList<DataEntity>()
+//
+//
+//            for (i in 1..8){
+//                val resultb = DataEntity(
+//                    i,
+//                    "Pertanyaan ${i} (jawaban A)",
+//                    listOf("pilih ini ${i}", "ini ${i}", "ini${i}", "atau ini${i}"),
+//                    "A"
+//                )
+//                listResultItem.add(resultb)
+//
+//            }
+//        return listResultItem
+//
+//    }
+
     fun getQuestions(): List<DataEntity> {
         return listOf(
             DataEntity(
                 1,
-                "Fungsi Marka jalan adalah ",
+                "Fungsi Marka jalan adalah :",
                 listOf(
                     "Untuk memberi batas jalan agar jalan terlihat jelas oleh pemakai jalan Yang sedang berlalu lintas dijalan.",
                     "Untuk menambah dan mengurangi kecepatan pemakai jalan yang Berlalu lintas dijalan.",
                     "Untuk mengatur lalu lintas atau memperingatkan atau menuntun Pemakai jalan dalam berlalu lintas di jalan"
                 ),
-                "C",
-                images = "dishub_logo"
+                "C"
             ),
-        )
-
+            DataEntity(
+                2,
+                "Yang bukan merupakan Marka Lambang adalah :",
+                listOf(
+                    "Segi tiga",
+                    "Gambar",
+                    "Panas"
+                ),
+                "C"
+            ),
+            DataEntity(
+                3,
+                ". Rambu dengan warna dasar kuning dengan lambang atau tulisan Berwarna hitam merupakan :",
+                listOf(
+                    "Rambu petunjuk",
+                    "Rambu peringatan",
+                    "Rambu perintah"
+                ),
+                "A"
+            ),
+            DataEntity(
+                4,
+                "Garis ganda yang terdiri dari garis utuh dan garis putus-putus termasuk :",
+                listOf(
+                    "Marka membujur",
+                    "Marka melintang",
+                    "Marka serong"
+                ),
+                "A"
+            ),
+            DataEntity(
+                5,
+                "Dalam suatu persimpangan jalan terdapat alat pemberi isyarat lalu lintas,Polisi lalu lintas dan polisi pamong praja. Isyarat lalu lintas yang manakah Yang harus diikuti oleh para pemakai jalan?",
+                listOf(
+                    "Alat Pemberi Isyarat lalu lintas",
+                    "Polisi lalu lintas",
+                    "Polisi pamong praja"
+                ),
+                "B"
+            ),
+            DataEntity(
+                6,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Lajur atau bagian jalan yang wajib dilewati adalah sebelah kiri rambu ini",
+                    "Satu satunya arah yang boleh ditempuh ialah ke kiri",
+                    "Dilarang berjalan lurus kedepan"
+                ),
+                "B",
+                images = "img_6"
+            ),
+            DataEntity(
+                7,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Penyempitan kanan jalan",
+                    "Perbaikan jalan",
+                    "Jalan satu jurusan"
+                ),
+                "A",
+                images = "img_7"
+            ),
+            DataEntity(
+                8,
+                "Anda berjalan dengan kecepatan kurang lebih 30 km per jam mendekati persimpangan yang diatur oleh lampu lalu lintas. Ketika lampu berubah dari warna hijau ke kuning, apa yang anda lakukan.",
+                listOf(
+                    "Berhenti",
+                    "Jalan terus",
+                    "Bersiap-siap berhenti karena belum melewati garis berhenti"
+                ),
+                "C"
+            ),
+            DataEntity(
+                9,
+                "Apabila anda ingin berpindah jalur dengan aman, maka anda harus",
+                listOf(
+                    "Memberikan isyarat secara jelas dan tepat waktunya dengan menggunakan petunjuk arah",
+                    "Yakin bahwa tidak membahayakan pemakai jalan lain",
+                    "Kedua jawaban diatas benar"
+                ),
+                "C"
+            ),
+            DataEntity(
+                10,
+                "Pengemudi diharuskan memberikan isyarat dengan petunjuk arah yang berkedip pada waktu",
+                listOf(
+                    "Akan berjalan atau akan mengubah arah ke kanan",
+                    "Akan berjalan atau akan berhenti",
+                    "Akan merubah arah ke kiri atau ke kanan."
+                ),
+                "C"
+            ),
+            DataEntity(
+                11,
+                "Teknik mengemudikan sepeda motor yang baik pada saat gerakan membelok adalah :",
+                listOf(
+                    "Menambah kecepatan pada jarak pendek sebelum mencapai tikungan",
+                    "Memiringkan sepeda motor kearah pusat tikungan dan tetap dalam posisi tegak",
+                    "Memiringkan sepeda motor dan pengemudi kearah pusat tikungan yang sesuai dengan kecepatan dan ketajaman tikungan"
+                ),
+                "C"
+            ),
+            DataEntity(
+                12,
+                "Apa kegunaan bahu jalan",
+                listOf(
+                    "Untuk pejalan Kaki",
+                    "Untuk berhenti dan parkir",
+                    "Untuk berhenti dalam keadaan darurat"
+                ),
+                "B"
+            ),
+            DataEntity(
+                13,
+                "Apa kegunaan helm ?",
+                listOf(
+                    "Untuk melindungi pandangan pengendara, melindungi pengendara dari Panas dan hujan",
+                    "Untuk melindungi kepala dari benturan atau gesekan yang mengakibatkan luka di kepala",
+                    "Untuk menambah penampilan pengendara dan merupakan kelengkapan bagi sepeda motor"
+                ),
+                "B"
+            ),
+            DataEntity(
+                14,
+                "Kendaraan yang digerakkan oleh peralatan teknik yang berada Pada kendaraan itu, disebut :",
+                listOf(
+                    "Sepeda motor",
+                    "Kendaraan bermotor",
+                    "Motor besar"
+                ),
+                "B"
+            ),
+            DataEntity(
+                15,
+                "Surat Izin Mengemudi golongan C digunakankan untuk :",
+                listOf(
+                    "Mengemudikan sepeda motor yang dirancang mampu mencapai kecepatan lebih dari 40 km per jam",
+                    "Mengemudikan sepeda motor yang dirancang mampu mencapai kecepatan Tidak lebih dari 40 Km per jam",
+                    "Pilihan a dan b salah"
+                ),
+                "A"
+            ),
+            DataEntity(
+                16,
+                "Menghadapi lampu kuning yang berkedip-kedip, maka tindakan yang benar, adalah:",
+                listOf(
+                    "Berjalan terus, kendaraan lain yang harus hati hati.",
+                    "Setidak tidaknya berhenti dan beri jalan.",
+                    "Mendekati dengan hati hati,mengurangi kecepatan jika perlu berhenti dan beri jalan."
+                ),
+                "C"
+            ),
+            DataEntity(
+                17,
+                "Dilarang mendahului kendaraan lain yang sedang berjalan walaupun tidak ada rambu rambu yang melarangnya pada :",
+                listOf(
+                    "Jalan yang menurun",
+                    "Jalan yang berlubang lubang",
+                    "Jalan tikungan"
+                ),
+                "C"
+            ),
+            DataEntity(
+                18,
+                "Pengemudi dilarang berhenti :",
+                listOf(
+                    "Pada belokan, persimpangan dan jembatan",
+                    "Tanpa terpaksa pada belokan, persimpangan, dan jembatan, pada jalan-jalan yang ada rambu larangan parkir",
+                    "Tanpa terpaksa, berhenti pada jalan belokan, persimpangan, dan jembatan, pada jalan-jalan yang ada rambu larangan berhenti"
+                ),
+                "C"
+            ),
+            DataEntity(
+                19,
+                "Dilarang parkir kendaraan :",
+                listOf(
+                    "Di belokan/ persimpangan jalan milik perkebunan yang tidak ada tanda larangan berhenti.",
+                    "Pada jalan yang naik/turun.",
+                    "Dibelokan, persimpangan persimpangan jalan, jembatan dan tempat lain yang ada rambu larangan parkir."
+                ),
+                "C"
+            ),
+            DataEntity(
+                20,
+                "Pada suatu ruas jalan ada 2 (dua) macam marka jalan berupa tanda garis membujur berwarna putih yang satu utuh dan yang disebelahnya lagi putus-putus, tanda garis mana yang harus dipatuhi oleh pengemudi :",
+                listOf(
+                    "Yang terdekat",
+                    "Yang terjauh",
+                    "Kedua-duanya"
+                ),
+                "A"
+            ),
+            DataEntity(
+                21,
+                "SIM apakah Yang perlu dimiliki, bila anda akan mengemudikan sepeda motor 300 CC dengan kereta samping",
+                listOf(
+                    "SIM A",
+                    "SIM C",
+                    "SIM D"
+                ),
+                "B"
+            ),
+            DataEntity(
+                22,
+                "Anda diwajibkan menggunakan pesawat penunjuk apabila :",
+                listOf(
+                    "Hendak berpapasan",
+                    "Hendak mundur",
+                    "Hendak beralih kejalur lain dijalan yang terbagi atas beberapa lajur"
+                ),
+                "C"
+            ),
+            DataEntity(
+                23,
+                "Pengemudi kendaraan bermotor yang terbukti beberapa kali melakukan pelanggaran lalu lintas atau pengemudi kendaraan bermotor yang terlibat sebagai tersangka dalam kasus kecelakaan lalu lintas dengan korban luka berat atau meninggal dunia, maka Polri berwenang untuk :",
+                listOf(
+                    "Membatalkan SIMnya",
+                    "Melakukan uji ulang",
+                    "Mencabut SIM nya"
+                ),
+                "B"
+            ),
+            DataEntity(
+                24,
+                "Apabila petugas mengatur lalu lintas dengan semprita, tiupan panjang satu kali, berarti :",
+                listOf(
+                    "Jalan",
+                    "Berhenti",
+                    "Meminta perhatian pemakai jalan"
+                ),
+                "B"
+            ),
+            DataEntity(
+                25,
+                "Tanda kendaraan bermotor dianggap sah apabila :",
+                listOf(
+                    "Dibuat sendiri oleh pemilik kendaraan bermotor, asalkan sesuai dengan persyaratan undang undang.",
+                    "Dibuat sendiri sambil menunggu pelat nomor asli dari Polri.",
+                    "Diperoleh dari Polisi Lalu Lintas yang mengeluarkan STNK dan Pelat Nomor."
+                ),
+                "C"
+            ),
+            DataEntity(
+                26,
+                "Apa yang anda harus lakukan bila anda melihat pejalan kaki Menunggu untuk menyebrang di tempat Zebra cross?",
+                listOf(
+                    "Lewati Tempat Penyebrangan secepat mungkin",
+                    "Dekati tempat panyebrangan pejalan kaki dengan kecepatan yang sedemikian rupa, sehingga bila perlu dapat dihentikan",
+                    "Jangan berhenti anda berhak melintas lebih dulu"
+                ),
+                "B"
+            ),
+            DataEntity(
+                27,
+                "Bagaimana seharusnya sikap yang terpuji dari setiap pangemudi?",
+                listOf(
+                    "Memperlihatkan kepandaian dan Kelihaian mengemudi kepada pemakai jalan lain",
+                    "Sedemikian rupa sehingga selalu mengalah dan berjalan dipinggir jalan",
+                    "Sedemikian rupa sehingga keselamatan dan keamanan lalu lintas selalu diutamakan"
+                ),
+                "C"
+            ),
+            DataEntity(
+                28,
+                "STNK selalu terkait dengan :",
+                listOf(
+                    "Seorang dan kendaraan bermotor",
+                    "Orang tertentu dan daerah tempat kendaraan itu menetap",
+                    "Kendaraan bermotor, orang tertentu, dan daerah tempat kendaraan itu menetap"
+                ),
+                "C"
+            ),
+            DataEntity(
+                29,
+                "Helmisasi perlu dilakukan untuk mencegah cedera pada bagian kepala bila mengalami suatu kecelakaan, ketentuan yang harus diikuti adalah sbb :",
+                listOf(
+                    "Pengemudi saja yang harus memakai Helm",
+                    "Pengemudi dan pembonceng harus memakai Helm",
+                    "Pengemudi sepeda motor yang kurang dari 100 CC tidak diharuskan memakai helm"
+                ),
+                "B"
+            ),
+            DataEntity(
+                30,
+                "Perubahan yang tidak boleh dilakukan pada sepada motor yang dapat Menyebabkan STNK tidak sah lagi, adalah :",
+                listOf(
+                    "Memasang dan mengganti mesin dengan kemampuan yang lebih besar",
+                    "Mengganti kaca spion dan tempat duduk",
+                    "Mengadakan perubahan pada sistem pembuangan (modifikasi knalpot)"
+                ),
+                "A"
+            ),
+            DataEntity(
+                31,
+                "Kendaraan apa yang berbahaya untuk didahului dan harus didahului hanya pada Jarak yang memadai untuk mendahului :",
+                listOf(
+                    "Kendaraan roda 2",
+                    "Kendaraan roda 3",
+                    "Kendaraan roda 4"
+                ),
+                "A"
+            ),
+            DataEntity(
+                32,
+                "Sebagai pengemudi motor maka :",
+                listOf(
+                    "Untuk mencapai tujuan yang lebih cepat diperbolehkan zig zag diantara mobil, asalkan tidak terjadi kecelakaan.",
+                    "Hanya boleh mendahului dari sebelah kanan apabila tidak ada rintangan lalu lintas lain dan dapat dilakukan dengan aman.",
+                    "Diperbolehkan mendahului kendaraan lain dari kiri atau kanan."
+                ),
+                "B"
+            ),
+            DataEntity(
+                33,
+                "Perbuatan pertama apa yang anda lakukan sebagai pengemudi, Apabila terjadi tabrakan?",
+                listOf(
+                    "Segera hentikan kendaraan, biarpun ditengah jalan. Yang penting adalah menunjukkan bekas-bekas rem kepada petugas polisi bahwa anda berada pada jalur yang benar sesuai peraturan.",
+                    "Segera menghentikan kendaraan dan mendatangi pengemudi kendaraan lawan tabrakan, untuk meminta pertanggung- jawaban kerugian yang anda derita.",
+                    "Segera menghentikan kendaraan, dan melaporkan kejadian kecelakaan tersebut kepada pos polisi terdekat."
+                ),
+                "C"
+            ),
+            DataEntity(
+                34,
+                "Apabila anda mendengar suara sirine yang kemungkinan dari pemadam Pemadam kebakaran, Polisi atau konvoi kendaraan. Anda diharuskan :",
+                listOf(
+                    "Menambah kecepatan",
+                    "menepi dan berhenti sampai konvoi lewat dan jalan aman",
+                    "Akhiri kecepatan minimum yang diwajibkan"
+                ),
+                "B"
+            ),
+            DataEntity(
+                35,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Daerah berbahaya",
+                    "Akhir dari semua larangan setempat terhadap kendaraan bergerak",
+                    "Beri kesempatan kepada kendaraan bermotor"
+                ),
+                "B",
+                images = "img_35"
+            ),
+            DataEntity(
+                36,
+                "Apa arti Rambu berikut ?",
+                listOf(
+                    "Kecepatan minimum yang diwajibkan",
+                    "Kecepatan tidak boleh melebihi 30 km per jam",
+                    "Akhir kecepatan minimum yang diwajibkan"
+                ),
+                "B",
+                images = "img_36"
+            ),
+            DataEntity(
+                37,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Silang datar berpintu",
+                    "Silang datar dengan dua atau lebih jalur rel",
+                    "Silang datar dengan satu jalur rel"
+                ),
+                "C",
+                images = "img_37"
+            ),
+            DataEntity(
+                38,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Wajib mengikuti arah ke kanan",
+                    "Lajur bagian jalan yang wajib diikuti",
+                    "Wajib mengikuti arah yang ditunjuk"
+                ),
+                "A",
+                images = "img_38"
+            ),
+            DataEntity(
+                39,
+                "Apa arti rambu berikut? ",
+                listOf(
+                    "Rambu petunjuk tempat berbalik arah",
+                    "Tikungan tajam kekanan",
+                    "Wajib mengikuti arah yang ditentukan"
+                ),
+                "A",
+                images = "img_39"
+            ),
+            DataEntity(
+                40,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Wajib berjalan lurus kedepan",
+                    "Jalan satu arah lurus",
+                    "Awal berlakunya rambu sesuai arah panah lalu lintas ke depan"
+                ),
+                "A",
+                images = "img_40"
+            ),
+            DataEntity(
+                41,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Dilarang parkir sampai dengan jarak 15 m dari tempat pemasangan rambu menurut arah lalu lintas kecuali yang dinyatakan lain dengan papan tambahan",
+                    "Dilarang berhenti sampai dengan jarak 15m dari tempat pemasangan rambu menurut arah lalu lintas kecuali yang dinyatakan lain dengan papan tambahan",
+                    "Larangan mengikuti kendaraan di depan kurang dari 15 meter"
+                ),
+                "B",
+                images = "img_41"
+            ),
+            DataEntity(
+                42,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Larangan masuk bagi gerobak dorong dan sejenisnya",
+                    "Larangan masuk bagi delman dan sejenisnya",
+                    "Larangan masuk bagi gerobak dorong, pedati, dan sejenisnya"
+                ),
+                "B",
+                images = "img_42"
+            ),
+            DataEntity(
+                43,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Larangan masuk bagi semua kendaraan bermotor maupun tidak bermotor dari kedua arah",
+                    "Larangan masuk bagi semua kendaraan bermotor maupun tidak bermotor dari satu arah masuk",
+                    "Larangan masuk bagi semua kendaraan bermotor"
+                ),
+                "A",
+                images = "img_43"
+            ),
+            DataEntity(
+                44,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Dilarang berjalan terus apabila mengakibatkan rintangan/hambatan/gangguan bagi lalu lintas dari arah lain yang wajib didahulukan.",
+                    "Dilarang berjalan terus, wajib berhenti sesaat dan meneruskan perjalanan setelah mendapat kepastian aman dari lalu lintas arah lainnya.",
+                    "Dilarang berjalan terus, wajib berhenti sesaat sebelum bagian jalan tertentu dan meneruskan perjalanan setelah mendahulukan kendaraan dari arah depan secara tersamar."
+                ),
+                "B",
+                images = "img_44"
+            ),
+            DataEntity(
+                45,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Semua kendaraan dilarang masuk",
+                    "Semua pemakai jalan dilarang masuk",
+                    "Semua kendaraan bermotor dilarang"
+                ),
+                "A",
+                images = "img_45"
+            ),
+            DataEntity(
+                46,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Wajib mengikuti salah satu lajur yang ditunjuk",
+                    "Wajib mengikuti salah satu arah yang ditunjuk",
+                    "Wajib berjalan lurus kedepan"
+                ),
+                "B",
+                images = "img_46"
+            ),
+            DataEntity(
+                47,
+                "Apa yang harus anda hindari apabila anda melewati rambu ini ?",
+                listOf(
+                    "Menambah kecepatan",
+                    "Mengerem dengan kuat dan mendadak",
+                    "Melakukan gerakan gerakan mengemudi yang mendadak atau mengerem dengan kuat dan mendadak"
+                ),
+                "C",
+                images = "img_47"
+            ),
+            DataEntity(
+                48,
+                "Apa arti rambu berikut ?",
+                listOf(
+                    "Semua kendaraan dilarang masuk",
+                    "Semua kendaraan bermotor dilarang masuk",
+                    "c. Semua kendaraan bermotor dilarang melintas dan parkir "
+                ),
+                "B",
+                images = "img_48"
+            ),
+            DataEntity(
+                49,
+                "Demi pengamanan kepala dari cedera apabila mengalami kecelakaan, maka Helmisasi perlu dengan ketentuan :",
+                listOf(
+                    "Pengemudi dan pembonceng harus memakai helm",
+                    "Pengemudi sepeda motor yang kurang dari 100 cc tidak diharuskan memakai helm",
+                    "Pembonceng tidak diharuskan memakai helm"
+                ),
+                "A"
+            ),
+            DataEntity(
+                50,
+                "Perubahan pada sepeda motor yang dapat menyebabkan STNK nya tidak Sah lagi adalah :",
+                listOf(
+                    "Memasang/mengganti mesin dengan kemampuan yang lebih besar",
+                    "Mengganti kaca spion",
+                    "Mengadakan perubahan pada sistim pembuangan"
+                ),
+                "A"
+            ),
+         )
     }
 
     fun postestQuestions(): List<Postest> {
@@ -529,5 +1051,4 @@ object InitialDataSource {
 
 
     }
-
 }

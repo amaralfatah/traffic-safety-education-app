@@ -159,16 +159,6 @@ class MainActivity : AppCompatActivity() {
             binding.rvMultipleChoice.adapter = multipleChoiseAdapter
 
         }
-        binding.btnMateri.setOnClickListener {
-            val intent = Intent(this, FirstVideoActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnSplash.setOnClickListener {
-            val intent = Intent(this, OnBoardingActivity::class.java)
-            startActivity(intent)
-        }
-
-
     }
 
     fun customDialog() {
