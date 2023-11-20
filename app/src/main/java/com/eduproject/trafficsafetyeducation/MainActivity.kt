@@ -1,7 +1,6 @@
 package com.eduproject.trafficsafetyeducation
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,9 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
 import com.eduproject.trafficsafetyeducation.databinding.ActivityMainBinding
 import com.eduproject.trafficsafetyeducation.databinding.CustomViewLayoutBinding
-import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
 import com.eduproject.trafficsafetyeducation.pretest.PretestViewModel
-import com.eduproject.trafficsafetyeducation.splash.OnBoardingActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -73,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 binding.IVSoal.setImageResource(resID)
             }
 
-            val multipleChoiseAdapter = MultipleChoiceAdapter(firstItem.answer, currentIndex, this) { clickAnswer ->
+            val multipleChoiseAdapter = MultipleChoiceAdapter(firstItem.answer, currentIndex,"postest", this) { clickAnswer ->
                 userAnswers[currentIndex] = clickAnswer
                 binding.clickedAnswer.text = clickAnswer
                 Log.d("CorrectAnswer", firstItem.correctAnswer)

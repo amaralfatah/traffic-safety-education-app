@@ -1,10 +1,12 @@
 package com.eduproject.trafficsafetyeducation.posttest
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.eduproject.trafficsafetyeducation.Constanta
 import com.eduproject.trafficsafetyeducation.R
 import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
 import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.DataEntity
@@ -12,11 +14,15 @@ import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.Poste
 import com.eduproject.trafficsafetyeducation.databinding.ActivityPosttestBinding
 import com.eduproject.trafficsafetyeducation.databinding.ActivityPreTestBinding
 import com.eduproject.trafficsafetyeducation.databinding.CustomViewLayoutBinding
+import com.eduproject.trafficsafetyeducation.finalresult.FinalResultActivity
+import com.eduproject.trafficsafetyeducation.finalresult.FinalResultViewModel
+import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PosttestActivity : AppCompatActivity() {
 
     private val postTestViewModel: PostTestViewModel by viewModel()
+    private val finalResultViewModel: FinalResultViewModel by viewModel()
     private  lateinit var binding: ActivityPosttestBinding
     private lateinit var customView: CustomViewLayoutBinding
     private var correctAnswerCount: Int = 0
@@ -65,7 +71,7 @@ class PosttestActivity : AppCompatActivity() {
         binding.clickedAnswer.text = currentItem.correctAnswer
         updateImage(currentItem.images)
 
-        val multipleChoiseAdapter = MultipleChoiceAdapter(currentItem.answer, currentIndex, this) { clickAnswer ->
+        val multipleChoiseAdapter = MultipleChoiceAdapter(currentItem.answer, currentIndex, Constanta.POSTEST_ARG,this) { clickAnswer ->
             handleAnswerClick(clickAnswer)
         }
 
@@ -129,6 +135,10 @@ class PosttestActivity : AppCompatActivity() {
 
         customView.score.text = correctAnswerCount.toString()
         customView.dialogDismissButton.setOnClickListener {
+            finalResultViewModel.savePostestScore(correctAnswerCount,this)
+            val intent = Intent(this, FinalResultActivity::class.java)
+            startActivity(intent)
+            finish()
             builder.dismiss()
         }
 

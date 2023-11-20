@@ -26,6 +26,7 @@ import androidx.core.widget.NestedScrollView
 import com.airbnb.lottie.LottieAnimationView
 import com.eduproject.trafficsafetyeducation.R
 import com.eduproject.trafficsafetyeducation.databinding.ActivitySecondVideoBinding
+import com.eduproject.trafficsafetyeducation.posttest.PosttestActivity
 
 class SecondVideoActivity : AppCompatActivity() {
 
@@ -116,7 +117,7 @@ class SecondVideoActivity : AppCompatActivity() {
 
                 // Menjadwalkan penghilangan animasi setelah 1 detik
                 Handler().postDelayed({
-                    val intent = Intent(this@SecondVideoActivity, FirstVideoActivity::class.java)
+                    val intent = Intent(this@SecondVideoActivity, PosttestActivity::class.java)
                     startActivity(intent)
                     fadeOutAnimation(lottieAnimationView)
                     lottieAnimationView.cancelAnimation()

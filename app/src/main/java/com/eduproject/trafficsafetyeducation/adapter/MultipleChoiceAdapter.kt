@@ -10,28 +10,28 @@ import com.eduproject.trafficsafetyeducation.databinding.MultipleChoiceItemBindi
 class MultipleChoiceAdapter(
     private var list: List<String>,
     private var index: Int,
+    private var usage: String,
     private val context: Context,
-    private val onItemClick: (String) ->Unit,
-): RecyclerView.Adapter<MultipleChoiceViewHolder>() {
+    private val onItemClick: (String) -> Unit,
+) : RecyclerView.Adapter<MultipleChoiceViewHolder>() {
 
     // Variable to keep track of the selected position
     var selectedPosition = -1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MultipleChoiceViewHolder {
-       return MultipleChoiceViewHolder(
-           MultipleChoiceItemBinding.inflate(
-               LayoutInflater.from(parent.context), parent, false
-           ),
-           context
-           ,
-           onItemClick
-       )
+        return MultipleChoiceViewHolder(
+            MultipleChoiceItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            ),
+            context,
+            onItemClick
+        )
     }
 
-    override fun getItemCount(): Int  = list.size
+    override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: MultipleChoiceViewHolder, position: Int) {
         val data = list[position]
-        holder.bind(data,this,index)
+        holder.bind(data, this, index, usage)
 
 //        Change the background color of the selected item
 //        if (selectedPosition == position)
@@ -41,7 +41,8 @@ class MultipleChoiceAdapter(
         // Reset the background color
 
     }
-    fun updateData(newList: List<String>, newindex:Int) {
+
+    fun updateData(newList: List<String>, newindex: Int) {
         list = newList
         index = newindex
         notifyDataSetChanged()
@@ -49,7 +50,6 @@ class MultipleChoiceAdapter(
 
     // Method to update the selected position
     fun updateSelectedPosition(newPosition: Int) {
-        Log.d("MultipleChoiceAdapter", "Updating selected position: $newPosition")
         val oldPosition = selectedPosition
         selectedPosition = newPosition
         notifyItemChanged(oldPosition)

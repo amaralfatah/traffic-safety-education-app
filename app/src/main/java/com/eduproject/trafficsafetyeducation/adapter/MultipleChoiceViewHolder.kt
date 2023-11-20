@@ -3,8 +3,10 @@ package com.eduproject.trafficsafetyeducation.adapter
 import android.content.Context
 import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
+import com.eduproject.trafficsafetyeducation.Constanta
 import com.eduproject.trafficsafetyeducation.MainActivity
 import com.eduproject.trafficsafetyeducation.databinding.MultipleChoiceItemBinding
+import com.eduproject.trafficsafetyeducation.posttest.PosttestActivity
 import com.eduproject.trafficsafetyeducation.pretest.PreTestActivity
 
 class MultipleChoiceViewHolder(
@@ -13,7 +15,7 @@ class MultipleChoiceViewHolder(
     private val onItemClick: (String) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(data: String, adapter: MultipleChoiceAdapter, index12: Int) {
+    fun bind(data: String, adapter: MultipleChoiceAdapter, index12: Int, usage: String) {
 
         val index = adapterPosition
         val prefix = ('A' + index)
@@ -26,8 +28,11 @@ class MultipleChoiceViewHolder(
 
         if (adapter.selectedPosition == adapterPosition) {
             binding.cvItemNote.setBackgroundColor(Color.parseColor("#9A93C0FF"))
-            if (index12 == 24) {
+            if (index12 == 4 && usage == Constanta.PRETEST_ARG) {
                 (context as PreTestActivity).customDialog()
+            }
+            if (index12 == 4 && usage == Constanta.POSTEST_ARG) {
+                (context as PosttestActivity).customDialog()
             }
         } else {
             binding.cvItemNote.background = null

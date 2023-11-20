@@ -3,20 +3,25 @@ package com.eduproject.trafficsafetyeducation.pretest
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.eduproject.trafficsafetyeducation.Constanta
 import com.eduproject.trafficsafetyeducation.R
 import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
 import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.DataEntity
 import com.eduproject.trafficsafetyeducation.databinding.ActivityPreTestBinding
 import com.eduproject.trafficsafetyeducation.databinding.CustomViewLayoutBinding
+import com.eduproject.trafficsafetyeducation.finalresult.FinalResultViewModel
 import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
+import com.eduproject.trafficsafetyeducation.posttest.PosttestActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PreTestActivity : AppCompatActivity() {
 
     private val pretestViewModel: PretestViewModel by viewModel()
+    private val finalResultViewModel: FinalResultViewModel by viewModel()
     private lateinit var binding: ActivityPreTestBinding
     private lateinit var customView: CustomViewLayoutBinding
     private var correctAnswerCount: Int = 0
@@ -67,7 +72,7 @@ class PreTestActivity : AppCompatActivity() {
         updateImage(currentItem.images)
 
         val multipleChoiseAdapter =
-            MultipleChoiceAdapter(currentItem.answer, currentIndex, this) { clickAnswer ->
+            MultipleChoiceAdapter(currentItem.answer, currentIndex, Constanta.PRETEST_ARG,this) { clickAnswer ->
                 handleAnswerClick(clickAnswer)
             }
 
@@ -131,10 +136,11 @@ class PreTestActivity : AppCompatActivity() {
 
         customView.score.text = correctAnswerCount.toString()
         customView.dialogDismissButton.setOnClickListener {
+            finalResultViewModel.savePretestScore(correctAnswerCount,this)
             val intent = Intent(this, FirstVideoActivity::class.java)
             startActivity(intent)
             finish()
-//            builder.dismiss()
+            builder.dismiss()
         }
 
         builder.setCanceledOnTouchOutside(false)
