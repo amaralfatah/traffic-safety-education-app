@@ -19,7 +19,9 @@
     <string name="selamat_telah_selesai">\tSelamat! Kamu udah berhasil menyelesaikan perjalanan kamu di Traffic Safety Education! Keren banget! Semoga pengetahuan dari pretest, materi, dan postest bisa jadi bekal yang super berguna buat aman berkendara kamu. Tetap jaga kewaspadaan ya, dan terus tingkatkan kesadaran tentang keselamatan berlalu lintas. Sekali lagi selamat buat kamu!</string>
     <string name="lorem">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan</string>
     <string name="nomor">25</string>
-    <string name="next">Next</string>
-    <string name="prev">Prev</string>
+    <string name="next">Lanjut</string>
+    <string name="prev">Kembali</string>
+    <string name="postest">Postest</string>
+    <string name="pretest">Pretest</string>
 
 </resources>
