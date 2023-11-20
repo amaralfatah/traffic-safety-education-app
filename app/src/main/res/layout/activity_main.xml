@@ -6,15 +6,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <TextView
-        android:id="@+id/soal_nomor"
-        android:layout_width="wrap_content"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutSoal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Soal 1"
+        android:padding="6dp"
+        android:background="@drawable/bg_rounded"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/pertanyaan"/>
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvPretest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Pretest"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:letterSpacing="0.1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPretest">
+
+            <TextView
+                android:id="@+id/soal_nomor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_circle_nomor"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:text="@string/nomor"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/pertanyaan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:justificationMode="inter_word"
+                android:text="@string/lorem"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/soal_nomor"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
     <ImageView
         android:id="@+id/IV_soal"
@@ -22,35 +82,25 @@
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/soal_nomor"/>
+        app:layout_constraintTop_toBottomOf="@id/layoutSoal"/>
 
 
-    <TextView
-        android:id="@+id/pertanyaan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_multiple_choice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintTop_toBottomOf="@id/pertanyaan"
+        app:layout_constraintTop_toBottomOf="@id/layoutSoal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/nextButton"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/next"
         app:layout_constraintVertical_bias="0.3"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintTop_toBottomOf="@id/rv_multiple_choice"
@@ -62,7 +112,7 @@
         android:id="@+id/prevButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prev"
+        android:text="@string/prev"
         app:layout_constraintVertical_bias="0.3"
         app:layout_constraintTop_toBottomOf="@id/rv_multiple_choice"
         app:layout_constraintStart_toStartOf="parent"
