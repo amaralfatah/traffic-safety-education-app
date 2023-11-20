@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         binding.rvMultipleChoice.layoutManager = layoutManager
 
         pretestViewModel.pretest()
-        pretestViewModel.postest()
 
         val test = "dishub_logo"
 

@@ -30,12 +30,4 @@ class PretestViewModel(private val mainUseCase: MainUseCase): ViewModel() {
 
 
     }
-
-    fun postest(){
-        mainUseCase.getPostest()
-            .onEach {
-                _postest.value =it
-            }
-            .launchIn(viewModelScope)
-    }
 }
