@@ -37,6 +37,7 @@ import com.google.android.exoplayer2.upstream.DataSpec
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 
 
 class FirstVideoActivity : AppCompatActivity() {
@@ -196,20 +197,16 @@ class FirstVideoActivity : AppCompatActivity() {
 
         binding.playerView.player = exoPlayer
 
-        val uri = RawResourceDataSource.buildRawResourceUri(R.raw.materi_first)
-        val dataSpec = DataSpec(uri)
-        val rawResourceDataSource = RawResourceDataSource(this)
+        val fileId = "1N8_3rIR-C24koLps9xZUl2SiBnrPpLvY"
+        val directUrl = "https://drive.google.com/uc?id=$fileId"
+        val uri = Uri.parse(directUrl)
 
-        try {
-            rawResourceDataSource.open(dataSpec)
-            val factory = DataSource.Factory { rawResourceDataSource }
-            val mediaSource = ProgressiveMediaSource.Factory(factory).createMediaSource(MediaItem.fromUri(uri))
-            exoPlayer?.setMediaSource(mediaSource)
-            exoPlayer?.prepare()
-        } catch (e: RawResourceDataSource.RawResourceDataSourceException) {
-            e.printStackTrace()
-        }
+        val dataSourceFactory = DefaultDataSourceFactory(this, "exoplayer-sample")
+        val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(MediaItem.fromUri(uri))
+        exoPlayer?.setMediaSource(mediaSource)
+        exoPlayer?.prepare()
     }
+
 
     private fun relasePlayer() {
         exoPlayer?.release()
