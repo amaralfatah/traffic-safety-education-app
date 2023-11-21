@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -115,10 +114,11 @@ class PreTestActivity : AppCompatActivity() {
             if (clickAnswer == correctAnswer) {
                 // User answered the question correctly
                 correctAnswerCount++
-            } else {
-                // User answered the question incorrectly
-                correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
             }
+//            else {
+//                // User answered the question incorrectly
+//                correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
+//            }
         }
 
         userAnswers[currentIndex] = clickAnswer

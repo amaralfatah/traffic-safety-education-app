@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -80,7 +79,7 @@ class PosttestActivity : AppCompatActivity() {
         if (multipleChoiceAdapter != null) {
             multipleChoiceAdapter.updateData(currentItem.answer, currentIndex, currentAnswer)
         } else {
-            val newAdapter = MultipleChoiceAdapter(currentItem.answer, currentAnswer, currentIndex, Constanta.PRETEST_ARG, this) { clickAnswer ->
+            val newAdapter = MultipleChoiceAdapter(currentItem.answer, currentAnswer, currentIndex, Constanta.POSTEST_ARG, this) { clickAnswer ->
                 handleAnswerClick(clickAnswer)
             }
             binding.rvMultipleChoice.adapter = newAdapter
@@ -116,10 +115,11 @@ class PosttestActivity : AppCompatActivity() {
             if (clickAnswer == correctAnswer) {
                 // User answered the question correctly
                 correctAnswerCount++
-            } else {
-                // User answered the question incorrectly
-                correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
             }
+//            else {
+//                // User answered the question incorrectly
+//                correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
+//            }
         }
 
         userAnswers[currentIndex] = clickAnswer
