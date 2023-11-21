@@ -2,6 +2,7 @@ package com.eduproject.trafficsafetyeducation.posttest
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -156,5 +157,18 @@ class PosttestActivity : AppCompatActivity() {
 
         builder.setCanceledOnTouchOutside(false)
         builder.show()
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle("Konfirmasi")
+            .setMessage("Apakah kamu yakin ingin keluar?")
+            .setPositiveButton("Ya") { _, _ ->
+                // Jika "Ya" ditekan, keluar dari semua activity
+                finishAffinity()
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
+            .getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
     }
 }
