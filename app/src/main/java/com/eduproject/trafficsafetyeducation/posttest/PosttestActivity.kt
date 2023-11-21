@@ -2,36 +2,35 @@ package com.eduproject.trafficsafetyeducation.posttest
 
 import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eduproject.trafficsafetyeducation.Constanta
 import com.eduproject.trafficsafetyeducation.R
 import com.eduproject.trafficsafetyeducation.adapter.MultipleChoiceAdapter
-import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.DataEntity
 import com.eduproject.trafficsafetyeducation.core.data.source.local.entity.Postest
 import com.eduproject.trafficsafetyeducation.databinding.ActivityPosttestBinding
-import com.eduproject.trafficsafetyeducation.databinding.ActivityPreTestBinding
 import com.eduproject.trafficsafetyeducation.databinding.CustomViewLayoutBinding
 import com.eduproject.trafficsafetyeducation.finalresult.FinalResultActivity
 import com.eduproject.trafficsafetyeducation.finalresult.FinalResultViewModel
-import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PosttestActivity : AppCompatActivity() {
 
     private val postTestViewModel: PostTestViewModel by viewModel()
     private val finalResultViewModel: FinalResultViewModel by viewModel()
-    private  lateinit var binding: ActivityPosttestBinding
+    private lateinit var binding: ActivityPosttestBinding
     private lateinit var customView: CustomViewLayoutBinding
-    private var correctAnswerCount: Int = 0
-    private var currentIndex = 0
-    private var correctAnswer: String = ""
-    private var isAnswered: Boolean =false
-    private var isCorrect: Boolean =false
-    private val userAnswers = mutableMapOf<Int, String>()
-    private val answeredCorrectly = mutableMapOf<Int, Boolean>()
+
+    private var correctAnswerCount: Int = 0 //use for count the correct answer
+    private var currentIndex = 0 // use to track the currect index
+    private var correctAnswer: String = "" // use to track the current answer
+    private var isAnswered: Boolean = false //use to track if question has been answer or not
+    private var isCorrect: Boolean = false // use to track if the answer was correct
+    private val userAnswers = mutableMapOf<Int, String>() // use to store the user answer
+    private val answeredCorrectly = mutableMapOf<Int, Boolean>() //use to store isAnswered 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,11 +66,22 @@ class PosttestActivity : AppCompatActivity() {
         correctAnswer = currentItem.correctAnswer
         isAnswered = userAnswers.containsKey(currentIndex)
         isCorrect = answeredCorrectly[currentIndex] ?: false
-        answeredCorrectly[currentIndex] = false
+        if (!userAnswers.containsKey(currentIndex)) {
+            answeredCorrectly[currentIndex] = false
+        }
         binding.clickedAnswer.text = currentItem.correctAnswer
         updateImage(currentItem.images)
-
-        val multipleChoiseAdapter = MultipleChoiceAdapter(currentItem.answer, currentIndex, Constanta.POSTEST_ARG,this) { clickAnswer ->
+        Log.d("updateQuestion", isCorrect.toString())
+        Log.d("updateQuestion 2", answeredCorrectly.toString())
+        for ((key, value) in answeredCorrectly) {
+            Log.d("updateQuestion 3", "Key: $key, Value: $value" )
+        }
+        val multipleChoiseAdapter = MultipleChoiceAdapter(
+            currentItem.answer,
+            currentIndex,
+            Constanta.POSTEST_ARG,
+            this
+        ) { clickAnswer ->
             handleAnswerClick(clickAnswer)
         }
 
@@ -90,26 +100,36 @@ class PosttestActivity : AppCompatActivity() {
 
     private fun handleAnswerClick(clickAnswer: String) {
         userAnswers[currentIndex] = clickAnswer
-//        binding.clickedAnswer.text = clickAnswer
 
-        if (isAnswered) {
-            if (isCorrect && clickAnswer != correctAnswer) {
+        Log.d("CheckCondition", isCorrect.toString())
+        Log.d("CheckCondition 2", isAnswered.toString())
+        if (isAnswered) { //question has been answer
+            if (isCorrect && clickAnswer != correctAnswer) { //the prev answer was correct and the user clicked different answer
                 correctAnswerCount--
                 isCorrect = false
-            } else if (!isCorrect && clickAnswer == correctAnswer) {
+            } else if (!isCorrect && clickAnswer == correctAnswer) {//the prev answer was wrong and the user clicked correct answer
+                Log.d("ObservePostest 3" , "here")
                 correctAnswerCount++
                 isCorrect = true
             }
+            Log.d("ObservePostest 5" , clickAnswer)
         } else {
             isAnswered = true
             if (clickAnswer == correctAnswer) {
                 isCorrect = true
-                answeredCorrectly[currentIndex] = true
-                correctAnswerCount++
+                Log.d("ObservePostest 1" , answeredCorrectly.containsKey(currentIndex).toString())
+                Log.d("ObservePostest 2", answeredCorrectly[currentIndex].toString())
+                if (answeredCorrectly.containsKey(currentIndex) && !answeredCorrectly[currentIndex]!!) {
+                    // If the question hasn't been answered correctly before, update the count
+                    answeredCorrectly[currentIndex] = true
+                    correctAnswerCount++
+                }
             } else {
                 answeredCorrectly[currentIndex] = false
             }
+            Log.d("ObservePostest 4" , "here")
         }
+
         binding.counter.text = "skor $correctAnswerCount"
     }
 
@@ -135,7 +155,7 @@ class PosttestActivity : AppCompatActivity() {
 
         customView.score.text = correctAnswerCount.toString()
         customView.dialogDismissButton.setOnClickListener {
-            finalResultViewModel.savePostestScore(correctAnswerCount,this)
+            finalResultViewModel.savePostestScore(correctAnswerCount, this)
             val intent = Intent(this, FinalResultActivity::class.java)
             startActivity(intent)
             finish()
