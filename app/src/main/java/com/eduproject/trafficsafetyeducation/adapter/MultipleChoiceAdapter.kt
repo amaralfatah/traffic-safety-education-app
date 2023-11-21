@@ -1,7 +1,6 @@
 package com.eduproject.trafficsafetyeducation.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +8,7 @@ import com.eduproject.trafficsafetyeducation.databinding.MultipleChoiceItemBindi
 
 class MultipleChoiceAdapter(
     private var list: List<String>,
+    private var currentAnswer: String,
     private var index: Int,
     private var usage: String,
     private val context: Context,
@@ -17,6 +17,9 @@ class MultipleChoiceAdapter(
 
     // Variable to keep track of the selected position
     var selectedPosition = -1
+    init {
+        updateSelectedPositionBasedOnCurrentAnswer()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MultipleChoiceViewHolder {
         return MultipleChoiceViewHolder(
             MultipleChoiceItemBinding.inflate(
@@ -33,27 +36,30 @@ class MultipleChoiceAdapter(
         val data = list[position]
         holder.bind(data, this, index, usage)
 
-//        Change the background color of the selected item
-//        if (selectedPosition == position)
-//            holder.itemView.setBackgroundColor(Color.parseColor("#DC746C")) // Selected color
-//        else
-//            holder.itemView.setBackgroundColor(Color.parseColor("#E49B83")) // Default color
-        // Reset the background color
-
     }
 
-    fun updateData(newList: List<String>, newindex: Int) {
+    fun updateData(newList: List<String>, newindex: Int, newCurrentAnswer: String) {
         list = newList
         index = newindex
+        currentAnswer = newCurrentAnswer
+        updateSelectedPositionBasedOnCurrentAnswer()
         notifyDataSetChanged()
     }
 
     // Method to update the selected position
     fun updateSelectedPosition(newPosition: Int) {
         val oldPosition = selectedPosition
+
         selectedPosition = newPosition
         notifyItemChanged(oldPosition)
         notifyItemChanged(newPosition)
     }
-
+    private fun updateSelectedPositionBasedOnCurrentAnswer() {
+        selectedPosition = when (currentAnswer) {
+            "A" -> 0
+            "B" -> 1
+            "C" -> 2
+            else -> -1
+        }
+    }
 }

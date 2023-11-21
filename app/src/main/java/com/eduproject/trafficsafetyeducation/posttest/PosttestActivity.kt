@@ -69,23 +69,21 @@ class PosttestActivity : AppCompatActivity() {
         if (!userAnswers.containsKey(currentIndex)) {
             answeredCorrectly[currentIndex] = false
         }
-//        binding.clickedAnswer.text = currentItem.correctAnswer
+        binding.clickedAnswer.text = currentItem.correctAnswer
         updateImage(currentItem.images)
-        Log.d("updateQuestion", isCorrect.toString())
-        Log.d("updateQuestion 2", answeredCorrectly.toString())
-        for ((key, value) in answeredCorrectly) {
-            Log.d("updateQuestion 3", "Key: $key, Value: $value" )
-        }
-        val multipleChoiseAdapter = MultipleChoiceAdapter(
-            currentItem.answer,
-            currentIndex,
-            Constanta.POSTEST_ARG,
-            this
-        ) { clickAnswer ->
-            handleAnswerClick(clickAnswer)
-        }
 
-        binding.rvMultipleChoice.adapter = multipleChoiseAdapter
+
+
+        val currentAnswer = userAnswers[currentIndex]?:""
+        val multipleChoiceAdapter = binding.rvMultipleChoice.adapter as? MultipleChoiceAdapter
+        if (multipleChoiceAdapter != null) {
+            multipleChoiceAdapter.updateData(currentItem.answer, currentIndex, currentAnswer)
+        } else {
+            val newAdapter = MultipleChoiceAdapter(currentItem.answer, currentAnswer, currentIndex, Constanta.PRETEST_ARG, this) { clickAnswer ->
+                handleAnswerClick(clickAnswer)
+            }
+            binding.rvMultipleChoice.adapter = newAdapter
+        }
     }
 
     private fun updateImage(imageName: String) {
@@ -99,38 +97,32 @@ class PosttestActivity : AppCompatActivity() {
     }
 
     private fun handleAnswerClick(clickAnswer: String) {
-        userAnswers[currentIndex] = clickAnswer
+        val previousAnswer = userAnswers[currentIndex]
 
-        Log.d("CheckCondition", isCorrect.toString())
-        Log.d("CheckCondition 2", isAnswered.toString())
-        if (isAnswered) { //question has been answer
-            if (isCorrect && clickAnswer != correctAnswer) { //the prev answer was correct and the user clicked different answer
-                correctAnswerCount--
-                isCorrect = false
-            } else if (!isCorrect && clickAnswer == correctAnswer) {//the prev answer was wrong and the user clicked correct answer
-                Log.d("ObservePostest 3" , "here")
-                correctAnswerCount++
-                isCorrect = true
-            }
-            Log.d("ObservePostest 5" , clickAnswer)
-        } else {
-            isAnswered = true
-            if (clickAnswer == correctAnswer) {
-                isCorrect = true
-                Log.d("ObservePostest 1" , answeredCorrectly.containsKey(currentIndex).toString())
-                Log.d("ObservePostest 2", answeredCorrectly[currentIndex].toString())
-                if (answeredCorrectly.containsKey(currentIndex) && !answeredCorrectly[currentIndex]!!) {
-                    // If the question hasn't been answered correctly before, update the count
-                    answeredCorrectly[currentIndex] = true
+        if (previousAnswer != null) { // User has answered this question before
+            if (previousAnswer == correctAnswer) { // Previous answer was correct
+                if (clickAnswer != correctAnswer) {
+                    // User changed the answer from correct to incorrect
+                    correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
+                }
+            } else { // Previous answer was incorrect
+                if (clickAnswer == correctAnswer) {
+                    // User changed the answer from incorrect to correct
                     correctAnswerCount++
                 }
-            } else {
-                answeredCorrectly[currentIndex] = false
             }
-            Log.d("ObservePostest 4" , "here")
+        } else { // User is answering this question for the first time
+            if (clickAnswer == correctAnswer) {
+                // User answered the question correctly
+                correctAnswerCount++
+            } else {
+                // User answered the question incorrectly
+                correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
+            }
         }
 
-//        binding.counter.text = "skor $correctAnswerCount"
+        userAnswers[currentIndex] = clickAnswer
+        binding.counter.text = "skor $correctAnswerCount"
     }
 
     private fun navigateToNextQuestion(data: List<Postest>) {

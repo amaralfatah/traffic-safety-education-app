@@ -1,5 +1,6 @@
 package com.eduproject.trafficsafetyeducation.pretest
 
+
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -15,7 +16,6 @@ import com.eduproject.trafficsafetyeducation.databinding.ActivityPreTestBinding
 import com.eduproject.trafficsafetyeducation.databinding.CustomViewLayoutBinding
 import com.eduproject.trafficsafetyeducation.finalresult.FinalResultViewModel
 import com.eduproject.trafficsafetyeducation.materi.FirstVideoActivity
-import com.eduproject.trafficsafetyeducation.posttest.PosttestActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PreTestActivity : AppCompatActivity() {
@@ -67,16 +67,23 @@ class PreTestActivity : AppCompatActivity() {
         correctAnswer = currentItem.correctAnswer
         isAnswered = userAnswers.containsKey(currentIndex)
         isCorrect = answeredCorrectly[currentIndex] ?: false
-        answeredCorrectly[currentIndex] = false
-//        binding.clickedAnswer.text = currentItem.correctAnswer
+//        answeredCorrectly[currentIndex] = false
+        if (!userAnswers.containsKey(currentIndex)) {
+            answeredCorrectly[currentIndex] = false
+        }
+        binding.clickedAnswer.text = currentItem.correctAnswer
         updateImage(currentItem.images)
 
-        val multipleChoiseAdapter =
-            MultipleChoiceAdapter(currentItem.answer, currentIndex, Constanta.PRETEST_ARG,this) { clickAnswer ->
+        val currentAnswer = userAnswers[currentIndex]?:""
+        val multipleChoiceAdapter = binding.rvMultipleChoice.adapter as? MultipleChoiceAdapter
+        if (multipleChoiceAdapter != null) {
+            multipleChoiceAdapter.updateData(currentItem.answer, currentIndex, currentAnswer)
+        } else {
+            val newAdapter = MultipleChoiceAdapter(currentItem.answer, currentAnswer, currentIndex, Constanta.PRETEST_ARG, this) { clickAnswer ->
                 handleAnswerClick(clickAnswer)
             }
-
-        binding.rvMultipleChoice.adapter = multipleChoiseAdapter
+            binding.rvMultipleChoice.adapter = newAdapter
+        }
     }
 
     private fun updateImage(imageName: String) {
@@ -88,29 +95,33 @@ class PreTestActivity : AppCompatActivity() {
             binding.IVSoal.visibility = View.GONE
         }
     }
-
     private fun handleAnswerClick(clickAnswer: String) {
-        userAnswers[currentIndex] = clickAnswer
+        val previousAnswer = userAnswers[currentIndex]
 
-        if (isAnswered) {
-            if (isCorrect && clickAnswer != correctAnswer) {
-                correctAnswerCount--
-                isCorrect = false
-            } else if (!isCorrect && clickAnswer == correctAnswer) {
-                correctAnswerCount++
-                isCorrect = true
+        if (previousAnswer != null) { // User has answered this question before
+            if (previousAnswer == correctAnswer) { // Previous answer was correct
+                if (clickAnswer != correctAnswer) {
+                    // User changed the answer from correct to incorrect
+                    correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
+                }
+            } else { // Previous answer was incorrect
+                if (clickAnswer == correctAnswer) {
+                    // User changed the answer from incorrect to correct
+                    correctAnswerCount++
+                }
             }
-        } else {
-            isAnswered = true
+        } else { // User is answering this question for the first time
             if (clickAnswer == correctAnswer) {
-                isCorrect = true
-                answeredCorrectly[currentIndex] = true
+                // User answered the question correctly
                 correctAnswerCount++
             } else {
-                answeredCorrectly[currentIndex] = false
+                // User answered the question incorrectly
+                correctAnswerCount = maxOf(correctAnswerCount - 1, 0)
             }
         }
-//        binding.counter.text = "skor $correctAnswerCount"
+
+        userAnswers[currentIndex] = clickAnswer
+        binding.counter.text = "skor $correctAnswerCount"
     }
 
     private fun navigateToNextQuestion(data: List<DataEntity>) {

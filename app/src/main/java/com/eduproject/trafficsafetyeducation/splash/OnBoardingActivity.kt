@@ -3,12 +3,11 @@ package com.eduproject.trafficsafetyeducation.splash
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.eduproject.trafficsafetyeducation.MainActivity
 import com.eduproject.trafficsafetyeducation.R
 import com.eduproject.trafficsafetyeducation.pretest.PreTestActivity
 import me.relex.circleindicator.CircleIndicator3

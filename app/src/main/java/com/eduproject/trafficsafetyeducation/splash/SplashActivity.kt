@@ -1,11 +1,9 @@
 package com.eduproject.trafficsafetyeducation.splash
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.eduproject.trafficsafetyeducation.MainActivity
 import com.eduproject.trafficsafetyeducation.R
 
 class SplashActivity : AppCompatActivity() {
