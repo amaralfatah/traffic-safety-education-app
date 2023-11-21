@@ -193,8 +193,7 @@ class SecondVideoActivity : AppCompatActivity() {
 
         binding.playerView.player = exoPlayer
 
-        val fileId = "1BMEgnu7niMg_D4YlOkLBGTln23lvu-lx"
-        val directUrl = "https://drive.google.com/uc?id=$fileId"
+        val directUrl = "https://firebasestorage.googleapis.com/v0/b/storevideo-c59a3.appspot.com/o/ATURAN%20BERLALU%20LINTAS%20DAN%20MARKA%20JALAN%20YG%20BENAR%20_%20MARKA%20JALAN%20DAN%20FUNGSINYA%20_%20RAMBU%20LALU%20LINTAS.mp4?alt=media&token=9fbbd2e5-a002-4fc0-8209-ffa58e952478"
         val uri = Uri.parse(directUrl)
 
         val dataSourceFactory = DefaultDataSourceFactory(this, "exoplayer-sample")
@@ -202,6 +201,7 @@ class SecondVideoActivity : AppCompatActivity() {
         exoPlayer?.setMediaSource(mediaSource)
         exoPlayer?.prepare()
     }
+
 
     private fun relasePlayer() {
         exoPlayer?.release()

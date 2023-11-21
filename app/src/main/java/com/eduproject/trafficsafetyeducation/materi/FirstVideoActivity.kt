@@ -197,8 +197,7 @@ class FirstVideoActivity : AppCompatActivity() {
 
         binding.playerView.player = exoPlayer
 
-        val fileId = "1N8_3rIR-C24koLps9xZUl2SiBnrPpLvY"
-        val directUrl = "https://drive.google.com/uc?id=$fileId"
+        val directUrl = "https://firebasestorage.googleapis.com/v0/b/storevideo-c59a3.appspot.com/o/Safety%20Riding%20-%20Institut%20Teknologi%20Kalimantan%20Tahun%202020.mp4?alt=media&token=21332011-ba51-4dba-8a4b-c2a20510b106"
         val uri = Uri.parse(directUrl)
 
         val dataSourceFactory = DefaultDataSourceFactory(this, "exoplayer-sample")
