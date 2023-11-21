@@ -1,6 +1,8 @@
 package com.eduproject.trafficsafetyeducation.finalresult
 
+import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -42,5 +44,18 @@ class FinalResultActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle("Konfirmasi")
+            .setMessage("Apakah kamu yakin ingin keluar?")
+            .setPositiveButton("Ya") { _, _ ->
+                // Jika "Ya" ditekan, keluar dari semua activity
+                finishAffinity()
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
+            .getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
     }
 }

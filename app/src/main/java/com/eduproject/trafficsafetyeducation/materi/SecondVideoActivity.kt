@@ -4,8 +4,10 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.DisplayMetrics
@@ -222,5 +224,18 @@ class SecondVideoActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         relasePlayer()
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle("Konfirmasi")
+            .setMessage("Apakah kamu yakin ingin keluar?")
+            .setPositiveButton("Ya") { _, _ ->
+                // Jika "Ya" ditekan, keluar dari semua activity
+                finishAffinity()
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
+            .getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
     }
 }
