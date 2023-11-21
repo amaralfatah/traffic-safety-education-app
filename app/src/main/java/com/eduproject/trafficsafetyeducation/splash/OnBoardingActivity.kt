@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.eduproject.trafficsafetyeducation.MainActivity
 import com.eduproject.trafficsafetyeducation.R
+import com.eduproject.trafficsafetyeducation.pretest.PreTestActivity
 import me.relex.circleindicator.CircleIndicator3
 
 class OnBoardingActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class OnBoardingActivity : AppCompatActivity() {
         btnStart = findViewById<Button>(R.id.btnStart)
         btnStart.visibility = View.GONE
         btnStart.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, PreTestActivity::class.java)
             startActivity(intent)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             finish()

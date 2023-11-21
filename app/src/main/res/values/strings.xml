@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Traffic Safety Education</string>
-    <string name="question_number_prefix">Question %1$d.</string>
-    <string name="default_question">This is a sample question?</string>
-    <string name="video_title">Materi 1 : Safety Riding</string>
     <string name="sudah_menonton">Saya sudah menonton</string>
 
 

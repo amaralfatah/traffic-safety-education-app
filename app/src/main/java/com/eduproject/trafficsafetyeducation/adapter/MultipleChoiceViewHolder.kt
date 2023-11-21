@@ -28,10 +28,10 @@ class MultipleChoiceViewHolder(
 
         if (adapter.selectedPosition == adapterPosition) {
             binding.cvItemNote.setBackgroundColor(Color.parseColor("#9A93C0FF"))
-            if (index12 == 4 && usage == Constanta.PRETEST_ARG) {
+            if (index12 == 24 && usage == Constanta.PRETEST_ARG) {
                 (context as PreTestActivity).customDialog()
             }
-            if (index12 == 4 && usage == Constanta.POSTEST_ARG) {
+            if (index12 == 24 && usage == Constanta.POSTEST_ARG) {
                 (context as PosttestActivity).customDialog()
             }
         } else {
