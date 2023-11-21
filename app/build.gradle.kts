@@ -51,4 +51,6 @@ dependencies {
     implementation ("com.airbnb.android:lottie:4.2.0")
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
     implementation ("me.relex:circleindicator:2.1.6")
+    implementation ("com.google.android.exoplayer:exoplayer:2.18.1")
+
 }

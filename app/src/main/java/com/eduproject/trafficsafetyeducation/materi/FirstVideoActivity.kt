@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.DisplayMetrics
@@ -18,6 +19,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -26,12 +28,25 @@ import androidx.core.widget.NestedScrollView
 import com.airbnb.lottie.LottieAnimationView
 import com.eduproject.trafficsafetyeducation.R
 import com.eduproject.trafficsafetyeducation.databinding.ActivityFirstVideoBinding
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.RawResourceDataSource
+import com.google.android.exoplayer2.upstream.DataSpec
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.upstream.DataSource
+
 
 class FirstVideoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFirstVideoBinding
     private lateinit var btnToSecond: AppCompatButton
     private var isVideoFinished = false // Penanda jika video telah selesai
+    private lateinit var videoView: VideoView
+
+    private var exoPlayer: ExoPlayer? = null
+    private var playbackPosition = 0L
+    private var playWhenReady = true
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,53 +55,7 @@ class FirstVideoActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val webView: WebView = binding.webView
-//        val video = "<iframe id=\"youtubePlayer\" width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/cMzmC6vuM-k?si=yEVZ6xZjvMxZANTt\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-//        val video = "<iframe id=\"youtubePlayer\" width=\"100%\" src=\"https://www.youtube.com/embed/pPleo8f4fj8?si=KH-LYOOkL20mTEFl\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-//        webView.loadData(video, "text/html", "utf-8")
-        val video = """
-                        <div id="player"></div>
-                        <script>
-                            var player;
-                            function onYouTubeIframeAPIReady() {
-                                player = new YT.Player('player', {
-                                    height: '100%',
-                                    width: '100%',
-                                    videoId: 'cMzmC6vuM-k',
-                                    events: {
-                                        'onStateChange': onPlayerStateChange
-                                    }
-                                });
-                            }
-                    
-                            function onPlayerStateChange(event) {
-                                if (event.data == YT.PlayerState.ENDED) {
-                                    Android.videoFinished();
-                                }
-                            }
-                        </script>
-                        <script src="https://www.youtube.com/iframe_api"></script>
-                    """
-        webView.loadDataWithBaseURL("https://www.youtube.com", video, "text/html", "utf-8", null)
-        val webSettings: WebSettings = webView.settings
-        webSettings.javaScriptEnabled = true
-        webView.webViewClient = WebViewClient()
-        webView.webChromeClient = CustomWebChromeClient(this)
-
-        // Aktifkan tombol setelah video selesai
-        webView.addJavascriptInterface(JavaScriptInterface(), "Android")
-        val javascript = """
-                            var youtubePlayer = document.getElementById('youtubePlayer');
-                            
-                            function checkVideoStatus() {
-                                if (youtubePlayer && youtubePlayer.getCurrentTime() >= youtubePlayer.getDuration()) {
-                                    Android.videoFinished();
-                                }
-                            }
-                
-                            setInterval(checkVideoStatus, 1000);
-                        """
-        webView.evaluateJavascript(javascript, null)
+        preparePlayer()
 
         // Ambil materi
         val containerMateri: LinearLayout = findViewById(R.id.containerMateri)
@@ -135,22 +104,7 @@ class FirstVideoActivity : AppCompatActivity() {
         centerLottieAnimationViewInScrollView()
     }
 
-    inner class JavaScriptInterface {
-        @android.webkit.JavascriptInterface
-        fun videoFinished() {
-            runOnUiThread {
-                isVideoFinished = true // Set marker bahwa video telah selesai
-                btnToSecond.isEnabled = true
 
-                val color = ContextCompat.getColor(this@FirstVideoActivity, R.color.white)
-                btnToSecond.backgroundTintList = ColorStateList.valueOf(color)
-                val textColor = ContextCompat.getColor(this@FirstVideoActivity, R.color.main_blue)
-                btnToSecond.setTextColor(textColor)
-
-                btnToSecond.text = "Kamu sudah menonton"
-            }
-        }
-    }
 
     @SuppressLint("InflateParams")
     private fun populateContainerMateri(containerMateri: LinearLayout) {
@@ -210,4 +164,70 @@ class FirstVideoActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun preparePlayer() {
+        exoPlayer = ExoPlayer.Builder(this).build()
+        exoPlayer?.playWhenReady = playWhenReady
+        exoPlayer?.addListener(object : Player.Listener {
+            override fun onPlaybackStateChanged(state: Int) {
+                super.onPlaybackStateChanged(state)
+                when (state) {
+                    Player.STATE_READY -> {
+                        // Video ready to play, you can enable the button here
+                        btnToSecond.isEnabled = false
+                    }
+                    Player.STATE_ENDED -> {
+                        // Video playback ended, you can enable the button here
+                        isVideoFinished = true // Set marker bahwa video telah selesai
+                        btnToSecond.isEnabled = true
+
+                        val color = ContextCompat.getColor(this@FirstVideoActivity, R.color.white)
+                        btnToSecond.backgroundTintList = ColorStateList.valueOf(color)
+                        val textColor = ContextCompat.getColor(this@FirstVideoActivity, R.color.main_blue)
+                        btnToSecond.setTextColor(textColor)
+
+                        btnToSecond.text = "Kamu sudah menonton"
+                    }
+                }
+            }
+        })
+
+        binding.playerView.player = exoPlayer
+
+        val uri = RawResourceDataSource.buildRawResourceUri(R.raw.materi_first)
+        val dataSpec = DataSpec(uri)
+        val rawResourceDataSource = RawResourceDataSource(this)
+
+        try {
+            rawResourceDataSource.open(dataSpec)
+            val factory = DataSource.Factory { rawResourceDataSource }
+            val mediaSource = ProgressiveMediaSource.Factory(factory).createMediaSource(MediaItem.fromUri(uri))
+            exoPlayer?.setMediaSource(mediaSource)
+            exoPlayer?.prepare()
+        } catch (e: RawResourceDataSource.RawResourceDataSourceException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun relasePlayer() {
+        exoPlayer?.release()
+        exoPlayer = null
+    }
+
+    override fun onStop() {
+        super.onStop()
+        relasePlayer()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        relasePlayer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        relasePlayer()
+    }
+
+
 }
