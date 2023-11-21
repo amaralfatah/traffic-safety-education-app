@@ -91,7 +91,6 @@ class PreTestActivity : AppCompatActivity() {
 
     private fun handleAnswerClick(clickAnswer: String) {
         userAnswers[currentIndex] = clickAnswer
-//        binding.clickedAnswer.text = clickAnswer
 
         if (isAnswered) {
             if (isCorrect && clickAnswer != correctAnswer) {
