@@ -69,7 +69,7 @@ class PosttestActivity : AppCompatActivity() {
         if (!userAnswers.containsKey(currentIndex)) {
             answeredCorrectly[currentIndex] = false
         }
-        binding.clickedAnswer.text = currentItem.correctAnswer
+//        binding.clickedAnswer.text = currentItem.correctAnswer
         updateImage(currentItem.images)
 
 
@@ -123,7 +123,7 @@ class PosttestActivity : AppCompatActivity() {
         }
 
         userAnswers[currentIndex] = clickAnswer
-        binding.counter.text = "skor $correctAnswerCount"
+//        binding.counter.text = "skor $correctAnswerCount"
     }
 
     private fun navigateToNextQuestion(data: List<Postest>) {

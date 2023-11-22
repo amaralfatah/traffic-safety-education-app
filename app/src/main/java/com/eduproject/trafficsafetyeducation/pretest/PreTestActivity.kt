@@ -71,7 +71,7 @@ class PreTestActivity : AppCompatActivity() {
         if (!userAnswers.containsKey(currentIndex)) {
             answeredCorrectly[currentIndex] = false
         }
-        binding.clickedAnswer.text = currentItem.correctAnswer
+//        binding.clickedAnswer.text = currentItem.correctAnswer
         updateImage(currentItem.images)
 
         val currentAnswer = userAnswers[currentIndex]?:""
@@ -122,7 +122,7 @@ class PreTestActivity : AppCompatActivity() {
         }
 
         userAnswers[currentIndex] = clickAnswer
-        binding.counter.text = "skor $correctAnswerCount"
+//        binding.counter.text = "skor $correctAnswerCount"
     }
 
     private fun navigateToNextQuestion(data: List<DataEntity>) {

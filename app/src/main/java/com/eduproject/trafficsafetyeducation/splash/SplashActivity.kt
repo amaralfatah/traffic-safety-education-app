@@ -22,3 +22,4 @@ class SplashActivity : AppCompatActivity() {
         }, SPLASH_TIME_OUT)
     }
 }
+// created by Amar Al Fatah & Jhorgi Gheovani Elbet

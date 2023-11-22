@@ -15,31 +15,39 @@
         android:roundIcon="@drawable/logo_traffic"
         android:supportsRtl="true"
         android:theme="@style/Theme.TrafficSafetyEducation"
+        android:screenOrientation="portrait"
         tools:targetApi="31">
         <activity
             android:name=".finalresult.FinalResultActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".posttest.PosttestActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".pretest.PreTestActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".splash.OnBoardingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".materi.FirstVideoActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".materi.SecondVideoActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".splash.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
