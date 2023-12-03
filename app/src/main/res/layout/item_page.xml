@@ -5,28 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/dishubLogo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/dishub_logo"/>
-
-    <TextView
-        android:id="@+id/dishubLabel"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logoLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dishubLogo"
-        android:layout_marginTop="4dp"
-        android:textAlignment="center"
-        android:textSize="8sp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Traffic Safety\nEducation"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/dishubLogo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:layout_constraintEnd_toStartOf="@id/bekasiLogo"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/dishub_logo"/>
+
+        <ImageView
+            android:id="@+id/bekasiLogo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toEndOf="@id/dishubLogo"
+
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/logo_bekasi"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/dishubLabel"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toStartOf="@id/dishubLogo"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/bekasiLogo"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/dishubLogo"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="6sp"-->
+<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:text="Traffic Safety Education Bekasi"/>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animLottie"
@@ -37,7 +60,7 @@
         android:focusable="true"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:layout_constraintTop_toBottomOf="@+id/dishubLabel"
+        app:layout_constraintTop_toBottomOf="@+id/logoLayout"
         app:layout_constraintBottom_toTopOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -54,7 +77,7 @@
         android:text="Selamat Datang di \nTraffic Safety Education!"
         android:textAlignment="center"
         android:textColor="@color/main_blue"
-        android:textSize="26sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/tvAbout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -70,7 +93,7 @@
         android:paddingRight="25dp"
         android:text="Di sini, kita bakal bantuin kamu jadi pengemudi yang lebih aman dan keren abis. Kita siap meluncur"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:fontFamily="@font/poppins_regular"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

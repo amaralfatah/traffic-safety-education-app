@@ -59,13 +59,13 @@ class OnBoardingActivity : AppCompatActivity() {
     private fun addToList(title: String, description: String, lottieFile: String) {
         titlesList.add(title)
         descList.add(description)
-        lottieFilesList.add(lottieFile)
+//        lottieFilesList.add(lottieFile)
     }
 
     private fun postToList() {
         for (i in 1..3) {
             if (i == 1) {
-                addToList("Selamat Datang \ndi Traffic Safety Education!", "Mari menjadikan keselamatan berkendara lebih menyenangkan dan siap untuk petualangan belajar yang seru dan informatif!\"", "on_boarding_$i")
+                addToList("Selamat Datang \ndi Traffic Safety Education!", "Mari menjadikan keselamatan berkendara lebih menyenangkan dan siap untuk petualangan belajar yang seru dan informatif!", "on_boarding_$i")
             } else if (i == 2) {
                 addToList("Tingkatkan Pengetahuanmu!", " Ikuti tes seru, pelajari materi menarik, dan uji kemampuanmu dalam postest!", "on_boarding_$i")
             } else if (i == 3) {
