@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eduproject.trafficsafetyeducation.Constanta
@@ -30,7 +32,11 @@ class PosttestActivity : AppCompatActivity() {
     private var isAnswered: Boolean = false //use to track if question has been answer or not
     private var isCorrect: Boolean = false // use to track if the answer was correct
     private val userAnswers = mutableMapOf<Int, String>() // use to store the user answer
-    private val answeredCorrectly = mutableMapOf<Int, Boolean>() //use to store isAnswered 
+    private val answeredCorrectly = mutableMapOf<Int, Boolean>() //use to store isAnswered
+
+    // countdown timer
+    private lateinit var timerTextView: TextView
+    private lateinit var countDownTimer: CountDownTimer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +57,9 @@ class PosttestActivity : AppCompatActivity() {
             }
         }
 
+        // countdown timer
+        timerTextView = binding.tvTimer
+        startTimer()
 
     }
 
@@ -84,6 +93,12 @@ class PosttestActivity : AppCompatActivity() {
             }
             binding.rvMultipleChoice.adapter = newAdapter
         }
+
+        val isFirstQuestion = currentIndex == 0
+        val isLastQuestion = currentIndex == data.size - 1
+
+        binding.prevButton.visibility = if (isFirstQuestion) View.INVISIBLE else View.VISIBLE
+        binding.nextButton.visibility = if (isLastQuestion) View.INVISIBLE else View.VISIBLE
     }
 
     private fun updateImage(imageName: String) {
@@ -170,5 +185,39 @@ class PosttestActivity : AppCompatActivity() {
             .setNegativeButton("Tidak", null)
             .show()
             .getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
+    }
+
+    private fun startTimer() {
+        countDownTimer = object : CountDownTimer(1800000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / 1000 / 60
+                val seconds = millisUntilFinished / 1000 % 60
+                timerTextView.text = String.format("%02d:%02d", minutes, seconds)
+            }
+            override fun onFinish() {
+                timerTextView.text = "00:00"
+                showRestartDialog()
+            }
+        }
+
+        countDownTimer.start()
+    }
+
+    private fun showRestartDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Waktu Habis")
+        builder.setMessage("Apakah kamu ingin memulai lagi?")
+        builder.setPositiveButton("Mulai Lagi") { _, _ ->
+            timerTextView.text = "30:00"
+            currentIndex = 0
+            correctAnswerCount = 0
+            userAnswers.clear()
+            answeredCorrectly.clear()
+            postTestViewModel.postest.value?.let { updateQuestion(it) }
+            startTimer()
+        }
+        builder.setCancelable(false)
+        val dialog = builder.create()
+        dialog.show()
     }
 }
